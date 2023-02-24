@@ -15,7 +15,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="32dp"
-        android:text="Registro de Usuarios"
+        android:text="Registro de Entrada"
         android:textAlignment="center"
         android:textSize="24sp" />
 
@@ -27,86 +27,128 @@
         android:layout_width="match_parent"
         android:layout_height="43dp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="369dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:paddingLeft="10dp"
-        android:ems="10"
-        android:hint="Cédula"
-        android:inputType="textPersonName"
-        tools:ignore="TouchTargetSizeCheck"
-        android:background="@drawable/edt_background" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
-        tools:ignore="TouchTargetSizeCheck"
-        android:paddingLeft="10dp"
-        android:background="@drawable/edt_background"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="369dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingLeft="10dp"
+            android:ems="10"
+            android:hint="Placa"
+            android:inputType="textPersonName"
+            tools:ignore="TouchTargetSizeCheck"
+            android:background="@drawable/edt_background" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Apellido"
-        android:inputType="textPersonName"
-        tools:ignore="TouchTargetSizeCheck"
-        android:paddingLeft="10dp"
-        android:background="@drawable/edt_background"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/editTextTextPersonName3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingLeft="10dp"
+                android:ems="10"
+                android:hint="Cédula"
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck"
+                android:background="@drawable/edt_background" />
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextTextEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Correo"
-        android:inputType="textEmailAddress"
-        tools:ignore="TouchTargetSizeCheck"
-        android:paddingLeft="10dp"
-        android:background="@drawable/edt_background"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:hint="Fecha"
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck"
+                android:paddingLeft="10dp"
+                android:background="@drawable/edt_background"/>
+        </LinearLayout>
 
-    <EditText
-        android:id="@+id/editTextTextPassword2"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/editTextTextPersonName4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:hint="Bloque"
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck"
+                android:paddingLeft="10dp"
+                android:background="@drawable/edt_background"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        tools:ignore="TouchTargetSizeCheck"
-        android:paddingLeft="10dp"
-        android:background="@drawable/edt_background"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edt_background"
+            android:ems="10"
+            android:hint="Observaciones"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            tools:ignore="TouchTargetSizeCheck" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/editTextTextPassword2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:hint=".."
+                android:inputType="textPassword"
+                tools:ignore="TouchTargetSizeCheck"
+                android:paddingLeft="10dp"
+                android:background="@drawable/edt_background"/>
+    </LinearLayout>
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="34dp" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnSalidaVehiculo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="Registrar" />
+        android:text="Aceptar" />
 
     </LinearLayout>
 
