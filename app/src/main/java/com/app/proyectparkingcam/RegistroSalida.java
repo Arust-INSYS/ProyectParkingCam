@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistroSalida extends AppCompatActivity {
-    EditText txtId, txtPlaza;
+    EditText txtId, txtPlaza,txtNombre;
     Button btnOk;
 
     @Override
@@ -36,6 +36,7 @@ public class RegistroSalida extends AppCompatActivity {
 
         txtId = findViewById(R.id.txtPlaca);
         txtPlaza = findViewById(R.id.txtPropietario);
+        txtNombre = findViewById(R.id.txtNombre);
         btnOk = findViewById(R.id.btnSalidaVehiculo);
         /*
         Button btnlistaV = findViewById(R.id.btnListarVh);
@@ -59,78 +60,23 @@ public class RegistroSalida extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //LeerWs();
-                enviarWs3();
-                //actualizarWs(txtTitle.getText().toString(), txtBody.getText().toString(), txtUser.getText().toString());
-                //eliminarWs();
+                LeerWs();
+                //enviarWs3();
             }
         });
 
     }
 
-    private void enviarWs(final String id_bloque, final String plazas) {
-
-        String url = "https://8052-45-236-151-105.sa.ngrok.io/api/bloque/create";
-
-        StringRequest postResquest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(RegistroSalida.this, "RESULTADO POST = " + response, Toast.LENGTH_LONG).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getMessage());
-            }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("id_bloque", id_bloque.toString());
-                params.put("plazas", plazas);
-
-                return params;
-            }
-        };
-        Volley.newRequestQueue(this).add(postResquest);
-    }
-
-    private void enviarWs2() {
-        final ProgressDialog loading = ProgressDialog.show(this, "Por favor espere...","Actualizando Datos",false,false);
-
-        String url = "https://8052-45-236-151-105.sa.ngrok.io/api/bloque/create";
-
-        StringRequest postResquest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                loading.dismiss();
-                Toast.makeText(getApplicationContext(),error.toString(),Toast.LENGTH_LONG).show();
-            }
-        }) {
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String,String>();
-                params.put("id_bloque", txtId.getText().toString());
-                params.put("plazas", txtPlaza.getText().toString());
-
-                return params;
-            }
-        };
-        Volley.newRequestQueue(this).add(postResquest);
-    }
 
     private void enviarWs3()  {
         final ProgressDialog loading = ProgressDialog.show(this, "Por favor espere...","Actualizando Datos",false,false);
     try {
-        String url = "https://8052-45-236-151-105.sa.ngrok.io/api/bloque/create";
+        String url = "https://1138-181-211-10-245.sa.ngrok.io/api/bloque/create";
 
         JSONObject jsonBody = new JSONObject();
         jsonBody.put("id_bloque", txtId.getText().toString());
         jsonBody.put("plazas", txtPlaza.getText().toString());
+        jsonBody.put("nombre", txtNombre.getText().toString());
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
                 new Response.Listener<JSONObject>() {
@@ -155,5 +101,33 @@ public class RegistroSalida extends AppCompatActivity {
     } catch (JSONException e) {
         e.printStackTrace();
     }
+    }
+
+    private void LeerWs() {
+        String id=txtId.getText().toString();
+        String url = "https://c8d6-45-236-151-105.sa.ngrok.io/api/bloque/search/"+id;
+
+        StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    txtId.setText(jsonObject.getString("id_bloque"));
+                    String plazas = jsonObject.getString("plazas");
+                    txtPlaza.setText(plazas);
+                    String nombre = jsonObject.getString("nombre");
+                    txtNombre.setText(nombre);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error", error.getMessage());
+            }
+        });
+        Volley.newRequestQueue(this).add(postResquest);
     }
 }

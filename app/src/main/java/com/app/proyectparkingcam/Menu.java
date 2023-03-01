@@ -35,10 +35,13 @@ public class Menu extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LeerWs();
+                //LeerWs();
                 //enviarWs( txtBody.getText().toString(), txtTitle.getText().toString());
                 //actualizarWs(txtTitle.getText().toString(), txtBody.getText().toString(), txtUser.getText().toString());
                 //eliminarWs();
+                Intent it = new Intent(Menu.this, EscanearPlaca.class);
+                startActivity(it);
+
             }
         });
         /*
