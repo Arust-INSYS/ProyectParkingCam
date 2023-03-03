@@ -8,150 +8,87 @@
     tools:context=".MainActivity"
     android:background="#0B2161">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="193dp"
-        android:layout_height="174dp"
-        android:layout_marginStart="109dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginBottom="489dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_parkingg" />
 
-    <EditText
-<<<<<<< Updated upstream
-        android:id="@+id/txtIdRegistroSalida1"
-=======
-<<<<<<< Updated upstream
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="80dp"
-        android:ems="10"
-        android:hint="User Name"
-=======
-        android:id="@+id/edittxtUser"
->>>>>>> Stashed changes
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="69dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="@color/white"
-        android:drawableStart="@drawable/ic_baseline_person"
-        android:hint="Usuario"
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-        android:inputType="textPersonName"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-<<<<<<< Updated upstream
-        android:id="@+id/editPassword"
-        android:layout_width="match_parent"
-=======
-<<<<<<< Updated upstream
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="251dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginEnd="80dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        tools:ignore="TouchTargetSizeCheck" />
-=======
-        android:id="@+id/edittxtClave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="@color/white"
-        android:drawableStart="@drawable/ic_baseline_lock_24"
-        android:hint="Contraseña"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittxtUser" />
->>>>>>> Stashed changes
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="193dp"
+            android:layout_height="174dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="68dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logo_parkingg"
+            tools:layout_editor_absoluteX="200dp"
+            tools:layout_editor_absoluteY="68dp" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
->>>>>>> Stashed changes
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:backgroundTint="@color/white"
-        android:drawableStart="@drawable/ic_baseline_lock_24"
-        android:hint="Contraseña"
-        android:inputType="textPersonName"
-        android:textColorHint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-<<<<<<< Updated upstream
-        app:layout_constraintTop_toBottomOf="@+id/txtIdRegistroSalida1" />
-=======
-<<<<<<< Updated upstream
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
->>>>>>> Stashed changes
+        <EditText
+            android:id="@+id/edittxtUser"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="21dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/white"
+            android:drawableStart="@drawable/ic_baseline_person"
+            android:hint="Usuario"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="98dp"
-        android:layout_marginEnd="40dp"
-        android:backgroundTint="@color/white"
-        android:text="Iniciar Sesión"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-<<<<<<< Updated upstream
-        app:layout_constraintTop_toBottomOf="@+id/editPassword" />
-=======
-        app:layout_constraintTop_toTopOf="parent" />
-=======
-        app:layout_constraintTop_toBottomOf="@+id/edittxtClave" />
+        <EditText
+            android:id="@+id/edittxtClave"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="51dp"
+            android:layout_marginRight="51dp"
+            android:layout_marginBottom="60dp"
+            android:backgroundTint="@color/white"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/txtViewMensaje"
-        android:layout_width="match_parent"
-        android:layout_height="19dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
-        android:text="&quot;&quot;"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        tools:ignore="MissingConstraints" />
->>>>>>> Stashed changes
->>>>>>> Stashed changes
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginEnd="40dp"
+            android:backgroundTint="@color/white"
+            android:text="Iniciar Sesión"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/txtViewMensaje"
+            android:layout_width="match_parent"
+            android:layout_height="19dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="25dp"
+            android:text="&quot;&quot;"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

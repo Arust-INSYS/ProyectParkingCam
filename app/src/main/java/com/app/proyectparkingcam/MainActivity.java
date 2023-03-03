@@ -3,35 +3,11 @@ package com.app.proyectparkingcam;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<< Updated upstream
-import android.content.Intent;
-=======
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-public class MainActivity extends AppCompatActivity {
-
-=======
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,25 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 
->>>>>>> Stashed changes
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-<<<<<<< Updated upstream
         Button btnInicio = findViewById(R.id.btnLogin);
-
-
-    }
-
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-
-
-        Button btnInicio = findViewById(R.id.btnLogin);
-=======
         editxtClave = (EditText) findViewById(R.id.edittxtClave);
         editxtUser = (EditText)findViewById(R.id.edittxtUser);
         txtMensaje = (TextView) findViewById(R.id.txtViewMensaje);
@@ -94,19 +56,11 @@ public class MainActivity extends AppCompatActivity {
                     Listar();
                 }
 
->>>>>>> Stashed changes
-
 
             }
         });
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-    }
-=======
-
-
-        }
+   }
     
     String nombre_user="", clave_user="";
     private void Listar() {
@@ -195,6 +149,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 }
