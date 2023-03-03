@@ -26,6 +26,7 @@ public class RegistroEntrada extends AppCompatActivity {
     Button btnGuardar;
     //URL DE LA API
     String url="https://49af-186-43-155-62.ngrok.io/api/registro/create";
+    //https://49af-186-43-155-62.ngrok.io/api/registro/create
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class RegistroEntrada extends AppCompatActivity {
             data.put("hora_salida", edtxtSalida.getText());
             data.put("observaciones", edtxtObservaciones.getText());
             data.put("usuario", edtxtUsuario.getText());
+            //data.put("usuario", Integer.parseInt(edtxtUsuario.getText().toString()));
             data.put("bloque", edtxtBloque.getText());
             data.put("vehiculo", edtxtVehiculo.getText());
 

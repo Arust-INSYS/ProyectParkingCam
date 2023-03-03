@@ -40,8 +40,16 @@ public class Menu extends AppCompatActivity {
                 //enviarWs( txtBody.getText().toString(), txtTitle.getText().toString());
                 //actualizarWs(txtTitle.getText().toString(), txtBody.getText().toString(), txtUser.getText().toString());
                 //eliminarWs();
+<<<<<<< Updated upstream
                 Intent i = new Intent(Menu.this,RegistroEntrada.class);
                 startActivity(i);
+=======
+                //Intent it = new Intent(Menu.this, EscanearPlaca.class);
+                //startActivity(it);
+                Intent i = new Intent(Menu.this, RegistroEntrada.class);
+                startActivity(i);
+
+>>>>>>> Stashed changes
             }
         });
         /*
