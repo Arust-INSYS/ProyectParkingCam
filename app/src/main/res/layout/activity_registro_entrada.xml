@@ -29,7 +29,7 @@
             android:layout_height="43dp" />
 
         <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/txtIdRegistro"
         android:layout_width="369dp"
         android:layout_height="50dp"
         android:layout_marginStart="20dp"

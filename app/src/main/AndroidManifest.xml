@@ -26,7 +26,7 @@
             android:name=".EscanearPlaca"
             android:exported="false" />
         <activity
-            android:name=".RegistroUsuarios"
+            android:name=".RegistroEntrada"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

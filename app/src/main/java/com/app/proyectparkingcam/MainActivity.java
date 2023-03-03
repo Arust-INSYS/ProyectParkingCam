@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+/*
         txtPlazasB1 = findViewById(R.id.txtIdPlazas);
         txtNumPlazas = findViewById(R.id.txtNumPlazas);
-        txtRegistro = findViewById(R.id.txtRegistro);
+        txtRegistro = findViewById(R.id.txtRegistro);*/
         Button btnInicio = findViewById(R.id.btnLogin);
 
 

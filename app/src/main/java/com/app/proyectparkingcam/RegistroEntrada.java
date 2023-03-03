@@ -2,13 +2,16 @@ package com.app.proyectparkingcam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -22,10 +25,10 @@ public class RegistroEntrada extends AppCompatActivity {
     //TextView
     TextView t1;
     //edittext
-    EditText edtxtFecha,edtxtEntrada,edtxtSalida,edtxtObservaciones,edtxtUsuario,edtxtVehiculo,edtxtBloque;
+    EditText edtxtFecha,edtxtEntrada,edtxtSalida,edtxtObservaciones,edtxtUsuario,edtxtVehiculo,edtxtBloque,txtIdRegistro;
     Button btnGuardar;
     //URL DE LA API
-    String url="https://49af-186-43-155-62.ngrok.io/api/registro/create";
+    String url="https://3d4e-181-188-201-139.sa.ngrok.io/registro/create";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class RegistroEntrada extends AppCompatActivity {
         t1 = (TextView) findViewById(R.id.txtMensaje);
         edtxtFecha = (EditText) findViewById(R.id.editxtfecha);
         edtxtEntrada = (EditText) findViewById(R.id.editxtEntrada);
+        txtIdRegistro = (EditText) findViewById(R.id.txtIdRegistro);
         edtxtSalida = (EditText) findViewById(R.id.editxtSalida);
         edtxtObservaciones = (EditText) findViewById(R.id.editxtObservaciones);
         edtxtUsuario = (EditText) findViewById(R.id.editxtUsuario);
@@ -44,8 +48,9 @@ public class RegistroEntrada extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Guardar();
-                Borar();
+                //Guardar();
+                //Borar();
+                enviaRegiss();
 
             }
         });
@@ -95,5 +100,46 @@ public class RegistroEntrada extends AppCompatActivity {
         edtxtUsuario.setText("");
         edtxtBloque.setText("");
         edtxtVehiculo.setText("");
+    }
+
+
+    private void enviaRegiss()  {
+        final ProgressDialog loading = ProgressDialog.show(this, "Por favor espere...","Actualizando Datos",false,false);
+        try {
+            String url = "https://3d4e-181-188-201-139.sa.ngrok.io/api/registro/create";
+
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("id_registro", txtIdRegistro.getText().toString());
+            jsonBody.put("fecha", edtxtFecha.getText().toString());
+            jsonBody.put("hora_entrada", edtxtEntrada.getText().toString());
+            jsonBody.put("hora_salida", edtxtSalida.getText().toString());
+            jsonBody.put("observaciones", edtxtObservaciones.getText().toString());
+            jsonBody.put("usuario", edtxtUsuario.getText().toString());
+            jsonBody.put("bloque", edtxtBloque.getText().toString());
+            jsonBody.put("vehiculo", edtxtVehiculo.getText().toString());
+
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // Maneja la respuesta del servidor
+                            loading.dismiss();
+                            Log.d("RESPONSE", response.toString());
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // Maneja el error de la solicitud
+                            loading.dismiss();
+                            error.printStackTrace();
+                        }
+                    });
+
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            requestQueue.add(jsonObjectRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

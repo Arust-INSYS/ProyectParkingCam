@@ -2,42 +2,70 @@ package com.app.proyectparkingcam;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Calendar;
 
 public class RegistroSalida extends AppCompatActivity {
     EditText txtId, txtPlaza,txtNombre;
-    Button btnOk;
+    TextView txt3,txtIdRegistroSalida1,txtVista,txtIdBuscarRegistro,txtIdRegistro,txtFecha,txtFechaEntradaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida;
+    Button btnBuscarIdRegistro,btnGuardar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_salida);
+        txt3 = findViewById(R.id.t3);
+        txtIdRegistroSalida1 = findViewById(R.id.txtIdRegistroSalida1);
+        txtIdBuscarRegistro = findViewById(R.id.txtIdRegistroSalida1);
+        txtIdRegistro = findViewById(R.id.txtIdRegistroSalida);
+        txtFecha = findViewById(R.id.txtFechaSalida);
+        txtFechaEntradaSalida = findViewById(R.id.txtFechaEntradaSalida);
+        txtHoraSalida2 = findViewById(R.id.txtHoraSalida2);
+        txtObservacionesSalida = findViewById(R.id.txtObservacionesSalida);
+        txtIdUsuarioSalida = findViewById(R.id.txtIdUsuarioSalida);
+        txtIdBloqueSalida = findViewById(R.id.txtIdBloqueSalida);
+        txtIdVehiculoSalida = findViewById(R.id.txtIdVehiculoSalida);
+
 
         txtId = findViewById(R.id.txtPlaca);
         txtPlaza = findViewById(R.id.txtPropietario);
-        txtNombre = findViewById(R.id.txtNombre);
-        btnOk = findViewById(R.id.btnSalidaVehiculo);
+        txtNombre = findViewById(R.id.txtIdRegistroSalida1);
+        btnGuardar = findViewById(R.id.btnGuardarSalida);
+        btnBuscarIdRegistro = findViewById(R.id.btnBuscarIdRegistro);
+
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+
+// Formatear la hora en una cadena
+        String time = String.format("%02d:%02d", hour, minute);
+
+// Establecer el texto en el TextView
+        txtHoraSalida2.setText(time);
+
+
         /*
         Button btnlistaV = findViewById(R.id.btnListarVh);
         btnlistaV.setOnClickListener(new View.OnClickListener() {
@@ -57,66 +85,103 @@ public class RegistroSalida extends AppCompatActivity {
             }
         });*/
 
-        btnOk.setOnClickListener(new View.OnClickListener() {
+
+        btnBuscarIdRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BuscarRegistro();
+            }
+        });
+
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LeerWs();
+                EditarRegistro();
+                //borrar();
                 //enviarWs3();
             }
         });
 
     }
 
+    public void EditarRegistro(){
 
-    private void enviarWs3()  {
-        final ProgressDialog loading = ProgressDialog.show(this, "Por favor espere...","Actualizando Datos",false,false);
-    try {
-        String url = "https://1138-181-211-10-245.sa.ngrok.io/api/bloque/create";
+        String id=txtIdRegistro.getText().toString();
 
-        JSONObject jsonBody = new JSONObject();
-        jsonBody.put("id_bloque", txtId.getText().toString());
-        jsonBody.put("plazas", txtPlaza.getText().toString());
-        jsonBody.put("nombre", txtNombre.getText().toString());
+        String urL ="https://5558-45-236-151-105.sa.ngrok.io/api/registro/update/"+id;
+        JSONObject data = new JSONObject();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
+        try {
+            data.put("id_registro", txtIdRegistro.getText());
+            data.put("fecha", txtFecha.getText());
+            data.put("hora_entrada", txtFechaEntradaSalida.getText());
+            data.put("hora_salida", txtHoraSalida2.getText());
+            data.put("observaciones", txtObservacionesSalida.getText());
+            data.put("usuario", txtIdUsuarioSalida.getText());
+            data.put("bloque", txtIdBloqueSalida.getText());
+            data.put("vehiculo", txtIdVehiculoSalida.getText());
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, urL, data,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        // Maneja la respuesta del servidor
-                        loading.dismiss();
-                        Log.d("RESPONSE", response.toString());
+                        // El servidor ha recibido los datos y los ha guardado en el archivo JSON
+                        // aquí puedes leer la respuesta y procesarla
+                        txt3.setText("Guardado");
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Maneja el error de la solicitud
-                        loading.dismiss();
-                        error.printStackTrace();
+                        // aquí puedes manejar los errores
+                        txt3.setText("Page not available");
                     }
                 });
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }
+// Agregar la solicitud a la cola
+        Volley.newRequestQueue(this).add(request);
+
+
     }
 
-    private void LeerWs() {
-        String id=txtId.getText().toString();
-        String url = "https://c8d6-45-236-151-105.sa.ngrok.io/api/bloque/search/"+id;
+    private void BuscarRegistro() {
+        String id=txtIdRegistroSalida1.getText().toString();
+        String url = "https://5558-45-236-151-105.sa.ngrok.io/api/registro/search/"+id;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    txtId.setText(jsonObject.getString("id_bloque"));
-                    String plazas = jsonObject.getString("plazas");
-                    txtPlaza.setText(plazas);
-                    String nombre = jsonObject.getString("nombre");
-                    txtNombre.setText(nombre);
+                    txtIdRegistro.setText(jsonObject.getString("id_registro"));
+
+                    String fecha = jsonObject.getString("fecha");
+                    txtFecha.setText(fecha);
+
+                    String hora_entrada = jsonObject.getString("hora_entrada");
+                    txtFechaEntradaSalida.setText(hora_entrada);
+
+                    String hora_salida = jsonObject.getString("hora_salida");
+                    txtHoraSalida2.setText(hora_salida);
+
+                    String observaciones = jsonObject.getString("observaciones");
+                    txtObservacionesSalida.setText(observaciones);
+
+                    JSONObject relatedObject = jsonObject.getJSONObject("usuario");
+                    String id_usuario = relatedObject.getString("id_usuario");
+                    txtIdUsuarioSalida.setText(id_usuario);
+
+                    JSONObject relatedObject1 = jsonObject.getJSONObject("bloque");
+                    String id_bloque = relatedObject1.getString("id_bloque");
+                    txtIdBloqueSalida.setText(id_bloque);
+
+                    JSONObject relatedObject2 = jsonObject.getJSONObject("vehiculo");
+                    String id_vehiculo = relatedObject2.getString("id_vehiculo");
+                    txtIdVehiculoSalida.setText(id_vehiculo);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -129,5 +194,20 @@ public class RegistroSalida extends AppCompatActivity {
             }
         });
         Volley.newRequestQueue(this).add(postResquest);
+    }
+
+    public void borrar(){
+        txt3.setText("");
+                txtIdRegistroSalida1.setText("");
+        txtVista.setText("");
+    txtIdBuscarRegistro.setText("");
+        txtIdRegistro.setText("");
+                txtFecha.setText("");
+        txtFechaEntradaSalida.setText("");
+                txtHoraSalida2.setText("");
+        txtObservacionesSalida.setText("");
+                txtIdUsuarioSalida.setText("");
+        txtIdBloqueSalida.setText("");
+                txtIdVehiculoSalida.setText("");
     }
 }

@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -19,18 +21,30 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Menu extends AppCompatActivity {
-    TextView txtPlazasB1,txtPlazasB2,txtNumPlazas,txtRegistro;
+    TextView txtIdPlazas1,txtIdPlazas2,txtPLazas1,txtPlazas2;
     Button btnEnviar;
+    RequestQueue requestQueue;
+
+    //private static final String url = "https://cf4c-181-188-201-139.sa.ngrok.io/api/bloque/list";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        txtPlazasB1 = findViewById(R.id.txtIdPlazas);
-        txtNumPlazas = findViewById(R.id.txtNumPlazas);
-        txtRegistro = findViewById(R.id.txtRegistro);
+        txtIdPlazas1 = findViewById(R.id.txtIdBloque1);
+        txtPLazas1 = findViewById(R.id.txtPlazas1);
+        txtIdPlazas2 = findViewById(R.id.txtIdBloque2);
+        txtPlazas2 = findViewById(R.id.txtPlazasB2);
+
+        LeerBloque1();
+        LeerBloque2();
+
         btnEnviar = findViewById(R.id.btnRegistroEntrada);
+
+        requestQueue = Volley.newRequestQueue(this);
+
+
 
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,20 +78,51 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-    private void LeerWs() {
 
-        String url = "https://8052-45-236-151-105.sa.ngrok.io/api/bloque/search/1 ";
+    private void LeerBloque1() {
+        String url = "https://5558-45-236-151-105.sa.ngrok.io/api/bloque/search/1";
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    txtPlazasB1.setText(jsonObject.getString("id_bloque"));
+                    //txtIdPlazas1.setText(jsonObject.getString("id_bloque"));
+                    String nombre = jsonObject.getString("nombre");
+                    txtIdPlazas1.setText(nombre);
                     String plazas = jsonObject.getString("plazas");
-                    txtRegistro.setText(plazas);
-                    //String registro = jsonObject.getString("registro");
-                    //txtRegistro.setText(registro);
+                    txtPLazas1.setText(plazas+" plazas");
+                    //String nombre = jsonObject.getString("nombre");
+                    //txtNombre.setText(nombre);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error", error.getMessage());
+            }
+        });
+        Volley.newRequestQueue(this).add(postResquest);
+    }
+
+    private void LeerBloque2() {
+        String url = "https://5558-45-236-151-105.sa.ngrok.io/api/bloque/search/2";
+
+        StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    //txtIdPlazas1.setText(jsonObject.getString("id_bloque"));
+                    String nombre = jsonObject.getString("nombre");
+                    txtIdPlazas2.setText(nombre);
+                    String plazas = jsonObject.getString("plazas");
+                    txtPlazas2.setText(plazas+" plazas");
+                    //String nombre = jsonObject.getString("nombre");
+                    //txtNombre.setText(nombre);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

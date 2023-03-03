@@ -23,7 +23,7 @@
         app:srcCompat="@drawable/logo_parkingg" />
 
     <EditText
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtIdRegistroSalida1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -54,7 +54,7 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txtIdRegistroSalida1" />
 
     <Button
         android:id="@+id/btnLogin"
