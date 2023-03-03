@@ -23,7 +23,21 @@
         app:srcCompat="@drawable/logo_parkingg" />
 
     <EditText
+<<<<<<< Updated upstream
         android:id="@+id/txtIdRegistroSalida1"
+=======
+<<<<<<< Updated upstream
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="80dp"
+        android:ems="10"
+        android:hint="User Name"
+=======
+        android:id="@+id/edittxtUser"
+>>>>>>> Stashed changes
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -33,6 +47,10 @@
         android:backgroundTint="@color/white"
         android:drawableStart="@drawable/ic_baseline_person"
         android:hint="Usuario"
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
         android:inputType="textPersonName"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +58,26 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <EditText
+<<<<<<< Updated upstream
         android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+=======
+<<<<<<< Updated upstream
+        android:id="@+id/editTextTextPassword"
+        android:layout_width="251dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="80dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        tools:ignore="TouchTargetSizeCheck" />
+=======
+        android:id="@+id/edittxtClave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -54,7 +91,31 @@
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittxtUser" />
+>>>>>>> Stashed changes
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+>>>>>>> Stashed changes
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:backgroundTint="@color/white"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:hint="Contraseña"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+<<<<<<< Updated upstream
         app:layout_constraintTop_toBottomOf="@+id/txtIdRegistroSalida1" />
+=======
+<<<<<<< Updated upstream
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+>>>>>>> Stashed changes
 
     <Button
         android:id="@+id/btnLogin"
@@ -70,6 +131,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< Updated upstream
         app:layout_constraintTop_toBottomOf="@+id/editPassword" />
+=======
+        app:layout_constraintTop_toTopOf="parent" />
+=======
+        app:layout_constraintTop_toBottomOf="@+id/edittxtClave" />
+
+    <TextView
+        android:id="@+id/txtViewMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:text="&quot;&quot;"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        tools:ignore="MissingConstraints" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 </androidx.constraintlayout.widget.ConstraintLayout>
