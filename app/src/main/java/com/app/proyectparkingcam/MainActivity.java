@@ -27,16 +27,12 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-
     //TextView txtUser,txtClave,
     TextView txtMensaje;
     Button btnInicio;
     EditText editxtUser;
     EditText editxtClave;
     String url;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,18 +60,12 @@ public class MainActivity extends AppCompatActivity {
 
                 }if(editxtClave.length()<6){
                     Campos_vacios_incorrectos(5);
-
                 }
-
                 else{
                     Listar();
                 }
-
-
             }
         });
-
-
    }
     
     String nombre_user="", clave_user="";
@@ -83,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         String username =editxtUser.getText().toString();
         String clave = editxtClave.getText().toString();
-        url="https://49af-186-43-155-62.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
+        url="https://3988-181-211-10-245.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
         Log.d("TAG", "Astoy antes del RQUEST");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -98,16 +88,11 @@ public class MainActivity extends AppCompatActivity {
                     txtMensaje.setText("Ok");
                     Acceso(true);
 
-
                 }catch (JSONException e) {
                     e.printStackTrace();
                     Campos_vacios_incorrectos(2);
                     txtMensaje.setText("ERROR");
                 }
-
-
-
-
             }
         }, new Response.ErrorListener() {
             @Override

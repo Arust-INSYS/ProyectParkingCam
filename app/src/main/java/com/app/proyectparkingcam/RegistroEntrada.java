@@ -28,7 +28,7 @@ public class RegistroEntrada extends AppCompatActivity {
     EditText edtxtFecha,edtxtEntrada,edtxtSalida,edtxtObservaciones,edtxtUsuario,edtxtVehiculo,edtxtBloque,txtIdRegistro;
     Button btnGuardar;
     //URL DE LA API
-    String url="https://3d4e-181-188-201-139.sa.ngrok.io/registro/create";
+    String url="https://b3cd-45-236-151-105.sa.ngrok.io/registro/create";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +106,7 @@ public class RegistroEntrada extends AppCompatActivity {
     private void enviaRegiss()  {
         final ProgressDialog loading = ProgressDialog.show(this, "Por favor espere...","Actualizando Datos",false,false);
         try {
-            String url = "https://3d4e-181-188-201-139.sa.ngrok.io/api/registro/create";
+            String url = "https://b3cd-45-236-151-105.sa.ngrok.io/api/registro/create";
 
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("id_registro", txtIdRegistro.getText().toString());

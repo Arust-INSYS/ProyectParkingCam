@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+<!--
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="63dp"
@@ -32,6 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:srcCompat="@drawable/logo_parkingg" />
+        -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -46,30 +47,30 @@
                 android:id="@+id/textView10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
-                android:textStyle="bold"
-                android:text="ID Registro" />
+                android:text="Placa del Vehículo"
+                android:textStyle="bold" />
 
 
-    <EditText
-        android:id="@+id/txtIdRegistroSalida1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="18dp"
-        android:background="@drawable/edt_background"
-        android:drawableStart="@drawable/ic_baseline_search"
-        android:ems="10"
-        android:hint="ID Registro"
-        android:inputType="textPersonName"
-        android:paddingLeft="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnBuscarIdRegistro"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:ignore="TouchTargetSizeCheck" />
+            <EditText
+                android:id="@+id/txtBuscarPlaca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/edt_background"
+                android:drawableStart="@drawable/ic_baseline_search"
+                android:ems="10"
+                android:hint="Placa"
+                android:inputType="textPersonName"
+                android:paddingLeft="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnBuscarIdRegistro"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                tools:ignore="TouchTargetSizeCheck" />
 
 
 
@@ -82,34 +83,112 @@
                 android:layout_marginEnd="26dp"
                 android:text="Buscar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/txtIdRegistroSalida1"
+                app:layout_constraintStart_toEndOf="@+id/txtBuscarPlaca"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
-                android:text="ID Registro" />
+                android:text="ID Vehículo" />
 
             <EditText
-        android:id="@+id/txtIdRegistroSalida"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+                android:id="@+id/txtIdVehiculoSalida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
-        android:ems="10"
-        android:hint="ID Registro:"
-        android:inputType="textPersonName"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtIdRegistroSalida1"
-        tools:ignore="TouchTargetSizeCheck" />
+                android:layout_marginStart="10dp"
+                android:ems="10"
+                android:hint="Id Vehiculo"
+                android:inputType="textPersonName"
+                android:textSize="17sp"
+                android:editable="false"
+                android:focusable="false"
+                android:background="@drawable/edt_background2"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtFechaSalida"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Nombre"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtNombrePer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:hint="Nombre"
+                android:inputType="textPersonName"
+                android:textSize="17sp"
+                android:editable="false"
+                android:focusable="false"
+                android:background="@drawable/edt_background2"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtBuscarPlaca"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:textStyle="bold"
+                android:text="ID Persona" />
+
+            <TextView
+                android:id="@+id/txtIdPersonaSalida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="ID Persona"
+                android:textSize="17sp"
+                android:background="@drawable/edt_background2"
+                android:textAlignment="center"
+                />
+
+            <TextView
+                android:id="@+id/ticket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="Ticket" />
+
+            <TextView
+                android:id="@+id/txtTicketSalida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:hint="Ticket"
+                android:textAlignment="center"
+                android:textSize="17sp"
+                android:background="@drawable/edt_background2"
+                />
 
             <TextView
                 android:id="@+id/textView12"
@@ -130,37 +209,18 @@
         android:ems="10"
         android:hint="Fecha:"
         android:inputType="textPersonName"
-        android:textSize="15sp"
+                android:textSize="17sp"
+                android:editable="false"
+                android:focusable="false"
+                android:background="@drawable/edt_background2"
+                android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtIdRegistroSalida"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombrePer"
         tools:ignore="TouchTargetSizeCheck" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:text="ID Vehículo" />
 
-            <EditText
-        android:id="@+id/txtIdVehiculoSalida"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-        android:ems="10"
-        android:hint="Id Vehiculo"
-        android:inputType="textPersonName"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFechaSalida"
-        tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -181,7 +241,11 @@
         android:ems="10"
         android:hint="Hora Entrada"
         android:inputType="textPersonName"
-        android:textSize="15sp"
+                android:textSize="17sp"
+                android:editable="false"
+                android:focusable="false"
+                android:background="@drawable/edt_background2"
+                android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtIdVehiculoSalida"
@@ -206,11 +270,82 @@
         android:ems="10"
         android:hint="Hora Salida"
         android:inputType="textPersonName"
-        android:textSize="15sp"
+                android:textSize="17sp"
+                android:editable="false"
+                android:focusable="false"
+                android:background="@drawable/edt_background2"
+                android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFechaEntradaSalida"
         tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:hint="Condición"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/txtCondicionSalida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:ems="10"
+                android:text="Salida"
+                android:textAlignment="center"
+                android:editable="false"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:textSize="17sp"
+                android:background="@drawable/edt_background2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:text="ID Bloque" />
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="200dp"
+                android:layout_marginBottom="7dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtBloque"
+                tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+            <EditText
+                android:id="@+id/txtIdBloqueSalida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:ems="10"
+                android:hint="Bloque"
+                android:editable="false"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtIdUsuarioSalida"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/textView16"
@@ -237,6 +372,8 @@
         app:layout_constraintTop_toBottomOf="@+id/txtHoraSalida2"
         tools:ignore="TouchTargetSizeCheck" />
 
+
+
             <TextView
                 android:id="@+id/textView18"
                 android:layout_width="match_parent"
@@ -262,30 +399,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtObservacionesSalida"
         tools:ignore="TouchTargetSizeCheck" />
 
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:text="ID Bloque" />
 
-            <EditText
-        android:id="@+id/txtIdBloqueSalida"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-        android:ems="10"
-        android:hint="Bloque"
-        android:inputType="textPersonName"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtIdUsuarioSalida"
-        tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:id="@+id/t3"

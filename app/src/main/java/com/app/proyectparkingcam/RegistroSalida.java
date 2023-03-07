@@ -20,15 +20,17 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class RegistroSalida extends AppCompatActivity {
     EditText txtId, txtPlaza,txtNombre;
-    TextView txt3,txtIdRegistroSalida1,txtVista,txtIdBuscarRegistro,txtIdRegistro,txtFecha,txtFechaEntradaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida;
+    TextView txtTicket,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtFechaEntradaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtIdPersonaSalida,txtCondicionSalida;
     Button btnBuscarIdRegistro,btnGuardar;
 
 
@@ -36,25 +38,55 @@ public class RegistroSalida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_salida);
+        txtTicket = findViewById(R.id.txtTicket);
         txt3 = findViewById(R.id.t3);
-        txtIdRegistroSalida1 = findViewById(R.id.txtIdRegistroSalida1);
-        txtIdBuscarRegistro = findViewById(R.id.txtIdRegistroSalida1);
-        txtIdRegistro = findViewById(R.id.txtIdRegistroSalida);
-        txtFecha = findViewById(R.id.txtFechaSalida);
+        txtBuscarPlaca = findViewById(R.id.txtBuscarPlaca);
+        txtNombrePer = findViewById(R.id.txtNombrePer);
+        txtFechaSalida = findViewById(R.id.txtFechaSalida);
         txtFechaEntradaSalida = findViewById(R.id.txtFechaEntradaSalida);
         txtHoraSalida2 = findViewById(R.id.txtHoraSalida2);
         txtObservacionesSalida = findViewById(R.id.txtObservacionesSalida);
         txtIdUsuarioSalida = findViewById(R.id.txtIdUsuarioSalida);
         txtIdBloqueSalida = findViewById(R.id.txtIdBloqueSalida);
         txtIdVehiculoSalida = findViewById(R.id.txtIdVehiculoSalida);
+        txtIdPersonaSalida = findViewById(R.id.txtIdPersonaSalida);
+        txtCondicionSalida = findViewById(R.id.txtCondicionSalida);
 
 
         txtId = findViewById(R.id.txtPlaca);
         txtPlaza = findViewById(R.id.txtPropietario);
-        txtNombre = findViewById(R.id.txtIdRegistroSalida1);
+        txtNombre = findViewById(R.id.txtBuscarPlaca);
         btnGuardar = findViewById(R.id.btnGuardarSalida);
         btnBuscarIdRegistro = findViewById(R.id.btnBuscarIdRegistro);
 
+        Spinner spinner3 = findViewById(R.id.spinner3);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.bloques, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner3.setAdapter(adapter);
+        spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(parent.getContext(),
+                        "Seleccionado: "+parent.getItemAtPosition(position).toString(),Toast.LENGTH_LONG).show();
+
+                txtIdBloqueSalida.setText(parent.getItemAtPosition(position).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        Date date = new Date();
+
+        String fecha = dateFormat.format(date);
+
+        txtFechaSalida.setText(fecha);
+
+        // Obtener la hora actual
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
@@ -65,31 +97,15 @@ public class RegistroSalida extends AppCompatActivity {
 // Establecer el texto en el TextView
         txtHoraSalida2.setText(time);
 
+        txtFechaEntradaSalida.setText("xx:xx");
 
-        /*
-        Button btnlistaV = findViewById(R.id.btnListarVh);
-        btnlistaV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(RegistroSalida.this, EscanearPlaca.class);
-                startActivity(it);
-            }
-        });
-
-        Button btnSlidaVehiculo = findViewById(R.id.btnSalidaVehiculo);
-        btnSlidaVehiculo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(RegistroSalida.this, MenuPrincipal.class);
-                startActivity(it);
-            }
-        });*/
+        txtCondicionSalida.setText("Salida");
 
 
         btnBuscarIdRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuscarRegistro();
+                BuscarVehiculo();
             }
         });
 
@@ -97,19 +113,18 @@ public class RegistroSalida extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditarRegistro();
-                //borrar();
-                //enviarWs3();
+                GuardarRegistroSalida();
+                //BorrarCampos();
             }
         });
 
     }
-
+    /*
     public void EditarRegistro(){
 
         String id=txtIdRegistro.getText().toString();
 
-        String urL ="https://5558-45-236-151-105.sa.ngrok.io/api/registro/update/"+id;
+        String urL ="https://b3cd-45-236-151-105.sa.ngrok.io/api/registro/update/"+id;
         JSONObject data = new JSONObject();
 
         try {
@@ -146,11 +161,12 @@ public class RegistroSalida extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
 
 
-    }
+    }*/
 
+   /*
     private void BuscarRegistro() {
         String id=txtIdRegistroSalida1.getText().toString();
-        String url = "https://5558-45-236-151-105.sa.ngrok.io/api/registro/search/"+id;
+        String url = "https://b3cd-45-236-151-105.sa.ngrok.io/api/registro/search/"+id;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -194,20 +210,102 @@ public class RegistroSalida extends AppCompatActivity {
             }
         });
         Volley.newRequestQueue(this).add(postResquest);
+    }*/
+
+
+    private void BuscarVehiculo() {
+        String placa=txtBuscarPlaca.getText().toString();
+        String url = "https://3988-181-211-10-245.ngrok.io/api/vehiculo/placa/"+placa;
+
+        StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    txtIdVehiculoSalida.setText(jsonObject.getString("id_vehiculo"));
+
+                    //String placa = jsonObject.getString("placa");
+                    //txtBuscarPlaca.setText(placa);
+
+                    //String ticket = jsonObject.getString("ticket");
+                    //txtTicket.setText(ticket);
+
+                    //String marca = jsonObject.getString("marca");
+                    //txtMarca.setText(marca);
+
+                    //String color = jsonObject.getString("color");
+                    //txtColor.setText(color);
+
+                    JSONObject relatedObject = jsonObject.getJSONObject("persona");
+                    String id_persona = relatedObject.getString("id_persona");
+                    txtIdPersonaSalida.setText(id_persona);
+
+                    String nombrePer = relatedObject.getString("nombre");
+                    String apellidoPer = relatedObject.getString("apellido");
+                    txtNombrePer.setText(nombrePer+" "+apellidoPer);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error", error.getMessage());
+            }
+        });
+        Volley.newRequestQueue(this).add(postResquest);
     }
 
-    public void borrar(){
+
+    public void GuardarRegistroSalida(){
+
+        String urL ="https://3988-181-211-10-245.ngrok.io/api/registro/create";
+        JSONObject data = new JSONObject();
+
+        try {
+            data.put("fecha", txtFechaSalida.getText());
+            data.put("hora_entrada", txtFechaEntradaSalida.getText());
+            data.put("hora_salida", txtHoraSalida2.getText());
+            data.put("observaciones", txtObservacionesSalida.getText());
+            data.put("usuario", txtIdUsuarioSalida.getText());
+            data.put("bloque", txtIdBloqueSalida.getText());
+            data.put("condicion", txtCondicionSalida.getText());
+            data.put("vehiculo", txtIdVehiculoSalida.getText());
+
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, urL, data,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // El servidor ha recibido los datos y los ha guardado en el archivo JSON
+                        // aquí puedes leer la respuesta y procesarla
+                        txt3.setText("Guardado");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // aquí puedes manejar los errores
+                        txt3.setText("Page not available");
+                    }
+                });
+
+// Agregar la solicitud a la cola
+        Volley.newRequestQueue(this).add(request);
+
+
+    }
+
+    public void BorrarCampos(){
         txt3.setText("");
-                txtIdRegistroSalida1.setText("");
-        txtVista.setText("");
-    txtIdBuscarRegistro.setText("");
-        txtIdRegistro.setText("");
-                txtFecha.setText("");
-        txtFechaEntradaSalida.setText("");
-                txtHoraSalida2.setText("");
+        txtBuscarPlaca.setText("");
+        txtNombrePer.setText("");
         txtObservacionesSalida.setText("");
-                txtIdUsuarioSalida.setText("");
-        txtIdBloqueSalida.setText("");
-                txtIdVehiculoSalida.setText("");
+        txtIdUsuarioSalida.setText("");
+        txtIdVehiculoSalida.setText("");
+        //txtTicket.setText("");
     }
 }
