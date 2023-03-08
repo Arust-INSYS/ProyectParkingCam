@@ -69,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
    }
     
     String nombre_user="", clave_user="";
+    //Valor de id;
+    static String txt_id;
     private void Listar() {
 
         String username =editxtUser.getText().toString();
         String clave = editxtClave.getText().toString();
-        url="https://3988-181-211-10-245.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
+        url="https://b093-191-100-142-163.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
         Log.d("TAG", "Astoy antes del RQUEST");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -81,10 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("TAG", "CERCA DEL TRY");
                 try {
                     JSONObject data = new JSONObject(response);
-
+                    txt_id = data.getString("id_usuario");
+                    //BUSCAR A PERSONA
+                    Buscar_Persona();
+                    //Captura_persona(txt_id);
+                    Log.d("TAG", "EL USUARIO ES:"+txt_id);
                     nombre_user=data.getString("username");
                     clave_user=data.getString("password");
-                    Log.d("TAG", "HOLA SOY: "+nombre_user+""+clave_user);
+                    Log.d("TAG", "HOLA SOY: "+nombre_user+" "+clave_user);
                     txtMensaje.setText("Ok");
                     Acceso(true);
 
@@ -99,6 +105,38 @@ public class MainActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 txtMensaje.setText("ERROR");
                 Campos_vacios_incorrectos(3);
+            }
+        });
+        Volley.newRequestQueue(this).add(data);
+    }
+    static String name_completo;
+    String name_persona, last_persona;
+    private void Buscar_Persona() {
+
+        url="https://b093-191-100-142-163.ngrok.io/api/persona/search/"+txt_id;
+        Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
+        StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("TAG", "CERCA DEL TRY");
+                try {
+                    JSONObject data = new JSONObject(response);
+                    name_persona = data.getString("nombre");
+                    last_persona=data.getString("apellido");
+                    //Almacenar nombre y apellido en variable static
+                    name_completo=name_persona+" "+last_persona;
+
+                    Log.d("TAG", "HOLA SOY: "+name_persona+""+last_persona);
+
+                }catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
             }
         });
         Volley.newRequestQueue(this).add(data);
@@ -185,6 +223,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+    public String Dar_valor(){
+        String cod_persona=txt_id;
+        return cod_persona;
+    }
+    public String Dar_Nombre(){
+        String nombre_persona=name_completo;
+        return nombre_persona;
+    }
 
 
 
