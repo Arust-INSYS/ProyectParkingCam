@@ -71,11 +71,13 @@ public class MainActivity extends AppCompatActivity {
     String nombre_user="", clave_user="";
     //Valor de id;
     static String txt_id;
+    static String txtx_id_persona;
+    String rol;
     private void Listar() {
 
         String username =editxtUser.getText().toString();
         String clave = editxtClave.getText().toString();
-        url="https://b093-191-100-142-163.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
+        url="https://3908-181-211-10-245.sa.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
         Log.d("TAG", "Astoy antes del RQUEST");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -90,9 +92,19 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("TAG", "EL USUARIO ES:"+txt_id);
                     nombre_user=data.getString("username");
                     clave_user=data.getString("password");
+                    rol=data.getString("rol");
+                    //CLAVE FORANEA
+                    JSONObject relatedObject = data.getJSONObject("persona");
+                    txtx_id_persona = relatedObject.getString("id_persona");
+                    //FIN CLAVE FORANEA
                     Log.d("TAG", "HOLA SOY: "+nombre_user+" "+clave_user);
+                    Log.d("TAG", "ID DE  PERSONA: "+txtx_id_persona);
                     txtMensaje.setText("Ok");
-                    Acceso(true);
+                    if(rol.equalsIgnoreCase("Guardia")){
+                        Acceso(true);
+                    }else{
+                        Campos_vacios_incorrectos(6);
+                    }
 
                 }catch (JSONException e) {
                     e.printStackTrace();
@@ -113,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     String name_persona, last_persona;
     private void Buscar_Persona() {
 
-        url="https://b093-191-100-142-163.ngrok.io/api/persona/search/"+txt_id;
+        url="https://3908-181-211-10-245.sa.ngrok.io/api/persona/search/"+txt_id;
         Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -124,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                     name_persona = data.getString("nombre");
                     last_persona=data.getString("apellido");
                     //Almacenar nombre y apellido en variable static
-                    name_completo=name_persona+" "+last_persona;
+                    name_completo="Guardia: "+name_persona+" "+last_persona;
 
                     Log.d("TAG", "HOLA SOY: "+name_persona+""+last_persona);
 
@@ -159,6 +171,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if(valor==5){
             mensaje="Escriba una clave minima de 6 caracteres";
+
+        }if(valor==6){
+            mensaje="Usuario no pertenece al personal de seguridad!!";
+            Borrar_campos(1);
 
         }
 
@@ -224,7 +240,11 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     public String Dar_valor(){
-        String cod_persona=txt_id;
+        String cod_user=txt_id;
+        return cod_user;
+    }
+    public String Dar_valor2(){
+        String cod_persona=txtx_id_persona;
         return cod_persona;
     }
     public String Dar_Nombre(){
