@@ -30,7 +30,7 @@ import java.util.Locale;
 
 public class RegistroSalida extends AppCompatActivity {
     EditText txtId, txtPlaza,txtNombre;
-    TextView txtTicket,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtFechaEntradaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtIdPersonaSalida,txtCondicionSalida;
+    TextView txtTicket,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtIdPersonaSalida,txtCondicionSalida;
     Button btnBuscarIdRegistro,btnGuardar;
 
 
@@ -43,7 +43,6 @@ public class RegistroSalida extends AppCompatActivity {
         txtBuscarPlaca = findViewById(R.id.txtBuscarPlaca);
         txtNombrePer = findViewById(R.id.txtNombrePer);
         txtFechaSalida = findViewById(R.id.txtFechaSalida);
-        txtFechaEntradaSalida = findViewById(R.id.txtFechaEntradaSalida);
         txtHoraSalida2 = findViewById(R.id.txtHoraSalida2);
         txtObservacionesSalida = findViewById(R.id.txtObservacionesSalida);
         txtIdUsuarioSalida = findViewById(R.id.txtIdUsuarioSalida);
@@ -90,14 +89,9 @@ public class RegistroSalida extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
-
-// Formatear la hora en una cadena
         String time = String.format("%02d:%02d", hour, minute);
 
-// Establecer el texto en el TextView
         txtHoraSalida2.setText(time);
-
-        txtFechaEntradaSalida.setText("xx:xx");
 
         txtCondicionSalida.setText("Salida");
 
@@ -265,7 +259,7 @@ public class RegistroSalida extends AppCompatActivity {
 
         try {
             data.put("fecha", txtFechaSalida.getText());
-            data.put("hora_entrada", txtFechaEntradaSalida.getText());
+            data.put("hora_entrada", "-- : --");
             data.put("hora_salida", txtHoraSalida2.getText());
             data.put("observaciones", txtObservacionesSalida.getText());
             data.put("usuario", txtIdUsuarioSalida.getText());

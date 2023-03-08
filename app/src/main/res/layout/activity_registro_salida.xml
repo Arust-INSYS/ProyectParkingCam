@@ -221,36 +221,6 @@
         tools:ignore="TouchTargetSizeCheck" />
 
 
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:text="Hora de Entrada" />
-
-            <EditText
-        android:id="@+id/txtFechaEntradaSalida"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginStart="10dp"
-        android:ems="10"
-        android:hint="Hora Entrada"
-        android:inputType="textPersonName"
-                android:textSize="17sp"
-                android:editable="false"
-                android:focusable="false"
-                android:background="@drawable/edt_background2"
-                android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtIdVehiculoSalida"
-        tools:ignore="TouchTargetSizeCheck" />
-
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"

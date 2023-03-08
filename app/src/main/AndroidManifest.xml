@@ -25,9 +25,6 @@
             android:name=".EscanearPlaca"
             android:exported="false" />
         <activity
-            android:name=".RegistroEntrada"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
