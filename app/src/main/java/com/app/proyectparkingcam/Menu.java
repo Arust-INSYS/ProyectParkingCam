@@ -42,15 +42,15 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        //listaBloques = findViewById(R.id.listaBloques);
+        listaBloques = findViewById(R.id.listaBloques);
         //listarBloques();
         txtIdPlazas1 = findViewById(R.id.txtIdBloque1);
         txtPLazas1 = findViewById(R.id.txtPlazas1);
         txtIdPlazas2 = findViewById(R.id.txtIdBloque2);
         txtPlazas2 = findViewById(R.id.txtPlazasB2);
 
-        //LeerBloque1();
-        //LeerBloque2();
+        LeerBloque1();
+        LeerBloque2();
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -74,7 +74,7 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-/*
+
     private void listarBloques(){
         String Url = "https://3988-181-211-10-245.ngrok.io/api/bloque/list";
 
@@ -172,9 +172,7 @@ public class Menu extends AppCompatActivity {
         });
         Volley.newRequestQueue(this).add(postResquest);
     }
-*/
 
-    /*
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==event.KEYCODE_BACK){
@@ -201,19 +199,17 @@ public class Menu extends AppCompatActivity {
         }
 
         return super.onKeyDown(keyCode, event);
-    }*/
-
+    }
+/*
     @Override
     public void onBackPressed() {
         // Cerrar la actividad actual
         finish();
     }
-/*
+
     @Override
     public void onBackPressed() {
         // Ignorar la acción del botón "Regresar"
         super.onBackPressed();
     }*/
-
-    //comentarioooo
 }
