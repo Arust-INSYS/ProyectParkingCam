@@ -32,7 +32,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Menu extends AppCompatActivity {
+    //Objeto Declarado del Main
+    MainActivity main = new MainActivity();
     TextView txtIdPlazas1,txtIdPlazas2,txtPLazas1,txtPlazas2;
+    TextView textoId, textoName, textoApellido;
+
+    String texto_nombre, part1,part2;
+    static String valor;
+    static String valor2;
     Button btnEnviar,btnRgSalida;
     RequestQueue requestQueue;
     ListView listaBloques;
@@ -42,15 +49,32 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        listaBloques = findViewById(R.id.listaBloques);
+        //listaBloques = findViewById(R.id.listaBloques);
         //listarBloques();
+        //CAMBIOS ARIEL
+        //--CADENA
+
+
+        //String[] parts = cadena.split(" ");
+        //part1 = parts[1]; // Nombre
+        //part2 = parts[2]; // Apellido
+        //--Pasar nombres y apellidos a los campos de texto
+        textoId = findViewById(R.id.textViewID);
+        textoName=findViewById(R.id.textViewIName);
+        textoApellido= findViewById(R.id.textViewLastN);
+                ///
+        /*
         txtIdPlazas1 = findViewById(R.id.txtIdBloque1);
         txtPLazas1 = findViewById(R.id.txtPlazas1);
         txtIdPlazas2 = findViewById(R.id.txtIdBloque2);
         txtPlazas2 = findViewById(R.id.txtPlazasB2);
-
-        LeerBloque1();
-        LeerBloque2();
+        */
+       // valor=main.Dar_valor();
+        valor2= main.Dar_valor2();
+        Log.d("TAG", "La cadena es: "+valor);
+        Buscar_Persona(valor2);
+        //LeerBloque1();
+        //LeerBloque2();
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -73,10 +97,44 @@ public class Menu extends AppCompatActivity {
             }
         });
     }
+    String url,name_persona,last_persona;
+    static String name_completo;
+    private void Buscar_Persona(String valor) {
+
+        url="https://3908-181-211-10-245.sa.ngrok.io/api/persona/search/"+valor;
+        Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
+        StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("TAG", "CERCA DEL TRY");
+                try {
+                    JSONObject data = new JSONObject(response);
+                    name_persona = data.getString("nombre");
+                    last_persona=data.getString("apellido");
+
+                    textoId.setText(valor);
+                    textoName.setText(name_persona);
+                    textoApellido.setText(last_persona);
+
+                    Log.d("TAG", "HOLA SOY: "+name_persona+""+last_persona);
+
+                }catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(this).add(data);
+    }
 
 
     private void listarBloques(){
-        String Url = "https://3988-181-211-10-245.ngrok.io/api/bloque/list";
+        String Url = "https://b093-191-100-142-163.ngrok.io/api/bloque/list";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 Url, null,
@@ -118,7 +176,7 @@ public class Menu extends AppCompatActivity {
     }
 
     private void LeerBloque1() {
-        String url = "https://3988-181-211-10-245.ngrok.io/api/bloque/search/1";
+        String url = "https://3908-181-211-10-245.sa.ngrok.io/api/bloque/search/1";
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -146,7 +204,7 @@ public class Menu extends AppCompatActivity {
     }
 
     private void LeerBloque2() {
-        String url = "https://3988-181-211-10-245.ngrok.io/api/bloque/search/2";
+        String url = "https://b093-191-100-142-163.ngrok.io/api/bloque/search/2";
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
