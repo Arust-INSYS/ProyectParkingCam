@@ -22,11 +22,10 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="104dp"
-            android:layout_height="74dp"
-            android:layout_marginStart="107dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="108dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="5dp"
             app:srcCompat="@drawable/logo_parkingg" />
 
         <TextView
@@ -34,34 +33,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="10dp"
-            android:text="ID:"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewID"
-            android:layout_width="309dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="ID:"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-             />
-
-        <TextView
-            android:id="@+id/textViewIName3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="Nombre:"
+            android:text="Información del Usuario"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -74,54 +48,44 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:text="Nombre:"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
-
-        <TextView
-            android:id="@+id/textViewLastN2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="Apellido"
+            android:textColor="#035bf7"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textViewLastN"
-            android:layout_width="308dp"
+            android:id="@+id/textViewID"
+            android:layout_width="309dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:text="Apellido"
+            android:text="ID:"
+            android:textColor="#035bf7"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            />
+             />
 
         <Button
             android:id="@+id/btnRegistroEntrada"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="76dp"
+            android:layout_marginTop="55dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="#FE2E2E"
-            android:text="Registro Entrada de vehiculos" />
+            android:text="Registro Entrada de vehículos" />
 
         <Button
             android:id="@+id/btnRegistroSalida"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:backgroundTint="#04B404"
-            android:text="Registro Salida de vehiculos" />
+            android:text="Registro Salida de vehículos" />
 
     </LinearLayout>
 <!--

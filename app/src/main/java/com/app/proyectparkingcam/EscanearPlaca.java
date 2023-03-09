@@ -31,24 +31,25 @@ import java.util.Locale;
 public class EscanearPlaca extends AppCompatActivity {
     MainActivity main = new MainActivity();
     String valor;
-    EditText txtPlacaBuscar,txt_IdRegistroE,txtObservaciones,txtUsuario,txtBloque,txtCondicion,txtBuscarTicket;
+    EditText txtPlacaBuscar,txtObservaciones,txtUsuario,txtBloque,txtCondicion,txtBuscarTicket;
 
-    TextView txtTicket,txtPlaca,txtMarca,txtNombrePersona,txtColor,txt_IdPersona,t2,txtIdVehiculo2,txtFecha,txtHoraEntrada,txtPersona;
+    TextView txtIdPersona,txtEstadoEntrada,txtTicket,txtPlacaEntrada,txtMarca,txtNombrePersona,txtColor,txt_IdPersona,t2,txtIdVehiculo2,txtFecha,txtHoraEntrada,txtPersona;
 
     Button btnBuscar,btnGuardar;
 
-    String urL ="https://3908-181-211-10-245.sa.ngrok.io/api/registro/create";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escanear_placa);
+        txtIdPersona = findViewById(R.id.txtIdPersona);
         txtTicket = findViewById(R.id.txtTicket);
         txtIdVehiculo2 = findViewById(R.id.txtIdVehiculo2);
         txtBuscarTicket = findViewById(R.id.txtBuscarTicket);
         t2 = findViewById(R.id.t2);
         txtPlacaBuscar = findViewById(R.id.txtPlacaBuscar);
-        txtPlaca = findViewById(R.id.txtPlacaR);
+        txtPlacaEntrada = findViewById(R.id.txtPlacaEntrada);
         txtMarca = findViewById(R.id.txtMarca);
         txtNombrePersona = findViewById(R.id.txtNombrePersona);
         //txtColor = findViewById(R.id.txtColor);
@@ -59,6 +60,16 @@ public class EscanearPlaca extends AppCompatActivity {
         txtHoraEntrada = findViewById(R.id.txtHoraEntrada);
         txtObservaciones = findViewById(R.id.txtObservaciones);
         txtUsuario = findViewById(R.id.txtUsuario);
+        txtEstadoEntrada = findViewById(R.id.txtEstadoEntrada);
+        txtEstadoEntrada.setText("A");
+        txtEstadoEntrada.setVisibility(View.GONE);
+        txtBloque = findViewById(R.id.txtBloque);
+        txtBloque.setVisibility(View.GONE);
+        txtCondicion = findViewById(R.id.txtCondicion);
+        btnGuardar = findViewById(R.id.btnGuardar);
+
+        txtCondicion.setText("Entrada");
+
         //CAMBIOS CÓDIGO ARIEL
         valor=main.Dar_valor();
         txtUsuario.setText(valor);
@@ -69,24 +80,17 @@ public class EscanearPlaca extends AppCompatActivity {
         txtPersona = findViewById(R.id.txtviewPersona);
         txtPersona.setText(main.Dar_Nombre());
         //FIN CAMBIOS
-        txtBloque = findViewById(R.id.txtBloque);
-        txtCondicion = findViewById(R.id.txtCondicion);
-        btnGuardar = findViewById(R.id.btnGuardar);
 
 
-        txtCondicion.setText("Entrada");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = new Date();
-
         String fecha = dateFormat.format(date);
-
         txtFecha.setText(fecha);
 
         // Obtener la hora actual
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
-
         String time = String.format("%02d:%02d", hour, minute);
         txtHoraEntrada.setText(time);
 
@@ -112,10 +116,6 @@ public class EscanearPlaca extends AppCompatActivity {
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent it = new Intent(EscanearPlaca.this, RegistroSalida.class);
-                startActivity(it);*/
-                //enviarVehi();
-                //enviaRegiss();
                 GuardarRegistro();
                 Borrar();
             }
@@ -126,7 +126,8 @@ public class EscanearPlaca extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 BuscarPorCampo();
-                //LeerVehiculoPorPlaca();
+                txtPlacaBuscar.setText("");
+                txtBuscarTicket.setText("");
             }
         });
     }
@@ -134,7 +135,7 @@ public class EscanearPlaca extends AppCompatActivity {
 
     private void LeerVehiculoPorPlaca() {
         String id=txtPlacaBuscar.getText().toString();
-        String url = "https://3908-181-211-10-245.sa.ngrok.io/api/vehiculo/placa/"+id;
+        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/placa/"+id;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -144,7 +145,7 @@ public class EscanearPlaca extends AppCompatActivity {
                     txtIdVehiculo2.setText(jsonObject.getString("id_vehiculo"));
 
                     String placa = jsonObject.getString("placa");
-                    txtPlaca.setText(placa);
+                    txtPlacaEntrada.setText(placa);
 
                     String marca = jsonObject.getString("marca");
                     txtMarca.setText(marca);
@@ -174,7 +175,7 @@ public class EscanearPlaca extends AppCompatActivity {
 
     private void LeerVehiculoPorTicket() {
         String ticket=txtBuscarTicket.getText().toString();
-        String url = "https://3908-181-211-10-245.sa.ngrok.io/api/vehiculo/ticket/"+ticket;
+        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/ticket/"+ticket;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -184,7 +185,7 @@ public class EscanearPlaca extends AppCompatActivity {
                     txtIdVehiculo2.setText(jsonObject.getString("id_vehiculo"));
 
                     String placa = jsonObject.getString("placa");
-                    txtPlaca.setText(placa);
+                    txtPlacaEntrada.setText(placa);
 
                     String marca = jsonObject.getString("marca");
                     txtMarca.setText(marca);
@@ -224,8 +225,8 @@ public class EscanearPlaca extends AppCompatActivity {
     }
 
     public void GuardarRegistro(){
+        String urL ="https://83e7-45-236-151-105.sa.ngrok.io/api/registro/create";
         JSONObject data = new JSONObject();
-
         try {
             data.put("fecha", txtFecha.getText());
             data.put("hora_entrada", txtHoraEntrada.getText());
@@ -235,6 +236,7 @@ public class EscanearPlaca extends AppCompatActivity {
             data.put("bloque", txtBloque.getText());
             data.put("condicion", txtCondicion.getText());
             data.put("vehiculo", txtIdVehiculo2.getText());
+            data.put("estado", txtEstadoEntrada.getText());
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -263,14 +265,14 @@ public class EscanearPlaca extends AppCompatActivity {
     }
 
     public void Borrar(){
-
+        txtIdVehiculo2.setText("");
+        txtNombrePersona.setText("");
         t2.setText("");
-        txtPlacaBuscar.setText("");
-        txtPlaca.setText("");
+        txtTicket.setText("");
+        txtPlacaEntrada.setText("");
         txtMarca.setText("");
         //txtColor = findViewById(R.id.txtColor);
-        txt_IdPersona.setText("");
-
+        txtIdPersona.setText("");
         //txtIdRegistroE.setText("");
         txtObservaciones.setText("");
         txtUsuario.setText("");

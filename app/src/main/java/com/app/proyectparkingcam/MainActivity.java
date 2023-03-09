@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Button btnInicio = findViewById(R.id.btnLogin);
-        editxtClave = (EditText) findViewById(R.id.edittxtClave);
+        editxtClave = (EditText) findViewById(R.id.edittxtClave1);
         editxtUser = (EditText)findViewById(R.id.edittxtUser);
         txtMensaje = (TextView) findViewById(R.id.txtViewMensaje);
         //VALIDAR LIMITE CARACTERRES
@@ -73,11 +73,12 @@ public class MainActivity extends AppCompatActivity {
     static String txt_id;
     static String txtx_id_persona;
     String rol;
+
     private void Listar() {
 
         String username =editxtUser.getText().toString();
         String clave = editxtClave.getText().toString();
-        url="https://3908-181-211-10-245.sa.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
+        url="https://83e7-45-236-151-105.sa.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
         Log.d("TAG", "Astoy antes del RQUEST");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
     static String name_completo;
     String name_persona, last_persona;
+
     private void Buscar_Persona() {
 
         url="https://3908-181-211-10-245.sa.ngrok.io/api/persona/search/"+txt_id;
@@ -153,11 +155,12 @@ public class MainActivity extends AppCompatActivity {
         });
         Volley.newRequestQueue(this).add(data);
     }
+
     //Validaciones
     public void Campos_vacios_incorrectos(int valor){
         String mensaje="";
         if (valor==1){
-            mensaje= "Campos vacios";
+            mensaje= "Campos vacíos";
         }if(valor==2){
 
             mensaje="Usuario o Contraseña Incorrecta";
@@ -170,10 +173,10 @@ public class MainActivity extends AppCompatActivity {
             Borrar_campos(1);
         }
         if(valor==5){
-            mensaje="Escriba una clave minima de 6 caracteres";
+            mensaje="Escriba una clave mínima de 6 caracteres";
 
         }if(valor==6){
-            mensaje="Usuario no pertenece al personal de seguridad!!";
+            mensaje="El usuario ingresado no pertenece al personal de seguridad.";
             Borrar_campos(1);
 
         }
@@ -192,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
         titulo.show();
 
     }
+
     public void Acceso(boolean valor){
         if(valor ==true){
             Borrar_campos(2);
@@ -201,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     public void Borrar_campos(int valor){
         if(valor==1){
             editxtClave.setText("");
@@ -211,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     // Se crea un TextWatcher
     TextWatcher mTextEditorWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -243,10 +249,12 @@ public class MainActivity extends AppCompatActivity {
         String cod_user=txt_id;
         return cod_user;
     }
+
     public String Dar_valor2(){
         String cod_persona=txtx_id_persona;
         return cod_persona;
     }
+
     public String Dar_Nombre(){
         String nombre_persona=name_completo;
         return nombre_persona;

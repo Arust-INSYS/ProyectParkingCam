@@ -49,8 +49,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        //listaBloques = findViewById(R.id.listaBloques);
-        //listarBloques();
+
         //CAMBIOS ARIEL
         //--CADENA
 
@@ -61,20 +60,12 @@ public class Menu extends AppCompatActivity {
         //--Pasar nombres y apellidos a los campos de texto
         textoId = findViewById(R.id.textViewID);
         textoName=findViewById(R.id.textViewIName);
-        textoApellido= findViewById(R.id.textViewLastN);
                 ///
-        /*
-        txtIdPlazas1 = findViewById(R.id.txtIdBloque1);
-        txtPLazas1 = findViewById(R.id.txtPlazas1);
-        txtIdPlazas2 = findViewById(R.id.txtIdBloque2);
-        txtPlazas2 = findViewById(R.id.txtPlazasB2);
-        */
-       // valor=main.Dar_valor();
+
         valor2= main.Dar_valor2();
         Log.d("TAG", "La cadena es: "+valor);
         Buscar_Persona(valor2);
-        //LeerBloque1();
-        //LeerBloque2();
+
 
         requestQueue = Volley.newRequestQueue(this);
 
@@ -101,7 +92,7 @@ public class Menu extends AppCompatActivity {
     static String name_completo;
     private void Buscar_Persona(String valor) {
 
-        url="https://3908-181-211-10-245.sa.ngrok.io/api/persona/search/"+valor;
+        url="https://83e7-45-236-151-105.sa.ngrok.io/api/persona/search/"+valor;
         Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -112,9 +103,9 @@ public class Menu extends AppCompatActivity {
                     name_persona = data.getString("nombre");
                     last_persona=data.getString("apellido");
 
-                    textoId.setText(valor);
-                    textoName.setText(name_persona);
-                    textoApellido.setText(last_persona);
+                    textoId.setText("ID Usuario: "+valor);
+                    textoName.setText("Nombre de Usuario: "+name_persona+" "+last_persona);
+                    //textoApellido.setText(last_persona);
 
                     Log.d("TAG", "HOLA SOY: "+name_persona+""+last_persona);
 
@@ -133,103 +124,7 @@ public class Menu extends AppCompatActivity {
     }
 
 
-    private void listarBloques(){
-        String Url = "https://b093-191-100-142-163.ngrok.io/api/bloque/list";
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
-                Url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        showListView(response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error Request: "+error.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        RequestQueue requestQueue =  Volley.newRequestQueue(this);
-        requestQueue.add(jsonObjectRequest);
-
-    }
-
-    private void showListView(JSONObject obj){
-        try{
-            List<String> contes = new ArrayList<String>();
-            JSONArray lista = obj.optJSONArray("");
-            for (int i=0; i<lista.length();i++) {
-                JSONObject json_data = lista.getJSONObject(i);
-                String conte = json_data.getString("id_bloque")+" "+json_data.getString("nombre")+" "+json_data.getString("plazas")+" "+json_data.getString("estado");
-                contes.add(conte);
-            }
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_list_item_1,contes);
-            listaBloques.setAdapter(adapter);
-
-        }catch (JSONException e) {
-            e.printStackTrace();
-        }finally{
-
-        }
-    }
-
-    private void LeerBloque1() {
-        String url = "https://3908-181-211-10-245.sa.ngrok.io/api/bloque/search/1";
-        StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    //txtIdPlazas1.setText(jsonObject.getString("id_bloque"));
-                    String nombre = jsonObject.getString("nombre");
-                    txtIdPlazas1.setText(nombre);
-                    String plazas = jsonObject.getString("plazas");
-                    txtPLazas1.setText(plazas+" plazas");
-                    //String nombre = jsonObject.getString("nombre");
-                    //txtNombre.setText(nombre);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getMessage());
-            }
-        });
-        Volley.newRequestQueue(this).add(postResquest);
-    }
-
-    private void LeerBloque2() {
-        String url = "https://b093-191-100-142-163.ngrok.io/api/bloque/search/2";
-        StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    //txtIdPlazas1.setText(jsonObject.getString("id_bloque"));
-                    String nombre = jsonObject.getString("nombre");
-                    txtIdPlazas2.setText(nombre);
-                    String plazas = jsonObject.getString("plazas");
-                    txtPlazas2.setText(plazas+" plazas");
-                    //String nombre = jsonObject.getString("nombre");
-                    //txtNombre.setText(nombre);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error", error.getMessage());
-            }
-        });
-        Volley.newRequestQueue(this).add(postResquest);
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

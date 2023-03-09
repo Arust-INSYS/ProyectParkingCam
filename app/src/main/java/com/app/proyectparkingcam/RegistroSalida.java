@@ -29,8 +29,11 @@ import java.util.Date;
 import java.util.Locale;
 
 public class RegistroSalida extends AppCompatActivity {
+    MainActivity main = new MainActivity();
+    String valor;
+
     EditText txtId, txtPlaza,txtNombre;
-    TextView txtBuscarPorTicket,txtTicketSalida,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtPlacaSalida,txtIdPersonaSalida,txtCondicionSalida,txtEstadoSalida;
+    TextView txtEstadoSalida,txtBuscarPorTicket,txtTicketSalida,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtPlacaSalida,txtIdPersonaSalida,txtCondicionSalida,textViewUser2;
     Button btnBuscarIdRegistro,btnGuardar;
 
 
@@ -42,7 +45,7 @@ public class RegistroSalida extends AppCompatActivity {
         txtTicketSalida = findViewById(R.id.txtTicketSalida);
         txt3 = findViewById(R.id.t3);
         txtBuscarPlaca = findViewById(R.id.txtBuscarPlaca);
-        txtPlacaSalida = findViewById(R.id.txtPlacaSalida);
+        txtPlacaSalida = findViewById(R.id.txtPlacaEntrada);
         txtNombrePer = findViewById(R.id.txtNombrePer);
         txtFechaSalida = findViewById(R.id.txtFechaSalida);
         txtHoraSalida2 = findViewById(R.id.txtHoraSalida2);
@@ -50,6 +53,13 @@ public class RegistroSalida extends AppCompatActivity {
         txtIdUsuarioSalida = findViewById(R.id.txtIdUsuarioSalida);
         txtIdBloqueSalida = findViewById(R.id.txtIdBloqueSalida);
         txtIdBloqueSalida.setVisibility(View.GONE);
+
+
+        txtEstadoSalida = findViewById(R.id.txtEstadoSalida);
+        txtEstadoSalida.setText("A");
+        txtEstadoSalida.setVisibility(View.GONE);
+
+
         txtIdVehiculoSalida = findViewById(R.id.txtIdVehiculoSalida);
         txtIdPersonaSalida = findViewById(R.id.txtIdPersonaSalida);
         txtCondicionSalida = findViewById(R.id.txtCondicionSalida);
@@ -58,6 +68,17 @@ public class RegistroSalida extends AppCompatActivity {
         txtNombre = findViewById(R.id.txtBuscarPlaca);
         btnGuardar = findViewById(R.id.btnGuardarSalida);
         btnBuscarIdRegistro = findViewById(R.id.btnBuscarIdRegistro);
+
+        //CAMBIOS CÓDIGO ARIEL
+        valor=main.Dar_valor();
+        txtIdUsuarioSalida.setText(valor);
+        txtIdUsuarioSalida.setEnabled(false);
+        //OCULTAR
+        txtIdUsuarioSalida.setVisibility(View.GONE);
+        Log.d("TAG", "EL USUARIO ES:"+valor);
+        textViewUser2 = findViewById(R.id.textViewUser2);
+        textViewUser2.setText(main.Dar_Nombre());
+        //FIN CAMBIOS
 
         //txtEstadoSalida.setText("A");
 
@@ -311,7 +332,7 @@ public class RegistroSalida extends AppCompatActivity {
             data.put("bloque", txtIdBloqueSalida.getText());
             data.put("condicion", txtCondicionSalida.getText());
             data.put("vehiculo", txtIdVehiculoSalida.getText());
-            //data.put("estado", txtEstadoSalida.getText());
+            data.put("estado", txtEstadoSalida.getText());
 
 
         } catch (JSONException e) {
