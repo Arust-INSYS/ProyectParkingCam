@@ -30,7 +30,7 @@ import java.util.Locale;
 
 public class RegistroSalida extends AppCompatActivity {
     EditText txtId, txtPlaza,txtNombre;
-    TextView txtTicket,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtIdPersonaSalida,txtCondicionSalida;
+    TextView txtBuscarPorTicket,txtTicketSalida,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtPlacaSalida,txtIdPersonaSalida,txtCondicionSalida,txtEstadoSalida;
     Button btnBuscarIdRegistro,btnGuardar;
 
 
@@ -38,25 +38,28 @@ public class RegistroSalida extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_salida);
-        txtTicket = findViewById(R.id.txtTicket);
+        txtBuscarPorTicket = findViewById(R.id.txtBuscarPorTicket);
+        txtTicketSalida = findViewById(R.id.txtTicketSalida);
         txt3 = findViewById(R.id.t3);
         txtBuscarPlaca = findViewById(R.id.txtBuscarPlaca);
+        txtPlacaSalida = findViewById(R.id.txtPlacaSalida);
         txtNombrePer = findViewById(R.id.txtNombrePer);
         txtFechaSalida = findViewById(R.id.txtFechaSalida);
         txtHoraSalida2 = findViewById(R.id.txtHoraSalida2);
         txtObservacionesSalida = findViewById(R.id.txtObservacionesSalida);
         txtIdUsuarioSalida = findViewById(R.id.txtIdUsuarioSalida);
         txtIdBloqueSalida = findViewById(R.id.txtIdBloqueSalida);
+        txtIdBloqueSalida.setVisibility(View.GONE);
         txtIdVehiculoSalida = findViewById(R.id.txtIdVehiculoSalida);
         txtIdPersonaSalida = findViewById(R.id.txtIdPersonaSalida);
         txtCondicionSalida = findViewById(R.id.txtCondicionSalida);
-
-
         txtId = findViewById(R.id.txtPlaca);
         txtPlaza = findViewById(R.id.txtPropietario);
         txtNombre = findViewById(R.id.txtBuscarPlaca);
         btnGuardar = findViewById(R.id.btnGuardarSalida);
         btnBuscarIdRegistro = findViewById(R.id.btnBuscarIdRegistro);
+
+        //txtEstadoSalida.setText("A");
 
         Spinner spinner3 = findViewById(R.id.spinner3);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.bloques, android.R.layout.simple_spinner_item);
@@ -80,9 +83,7 @@ public class RegistroSalida extends AppCompatActivity {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         Date date = new Date();
-
         String fecha = dateFormat.format(date);
-
         txtFechaSalida.setText(fecha);
 
         // Obtener la hora actual
@@ -90,7 +91,6 @@ public class RegistroSalida extends AppCompatActivity {
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
         String time = String.format("%02d:%02d", hour, minute);
-
         txtHoraSalida2.setText(time);
 
         txtCondicionSalida.setText("Salida");
@@ -99,7 +99,10 @@ public class RegistroSalida extends AppCompatActivity {
         btnBuscarIdRegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BuscarVehiculo();
+                BuscarPorCampo();
+                txtBuscarPorTicket.setText("");
+                txtBuscarPlaca.setText("");
+                //BuscarVehiculo();
             }
         });
 
@@ -108,7 +111,7 @@ public class RegistroSalida extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 GuardarRegistroSalida();
-                //BorrarCampos();
+                BorrarCampos();
             }
         });
 
@@ -207,9 +210,9 @@ public class RegistroSalida extends AppCompatActivity {
     }*/
 
 
-    private void BuscarVehiculo() {
+    private void BuscarVehiculoPorPlaca() {
         String placa=txtBuscarPlaca.getText().toString();
-        String url = "https://3988-181-211-10-245.ngrok.io/api/vehiculo/placa/"+placa;
+        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/placa/"+placa;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -218,11 +221,53 @@ public class RegistroSalida extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(response);
                     txtIdVehiculoSalida.setText(jsonObject.getString("id_vehiculo"));
 
-                    //String placa = jsonObject.getString("placa");
-                    //txtBuscarPlaca.setText(placa);
+                    String placa = jsonObject.getString("placa");
+                    txtPlacaSalida.setText(placa);
 
-                    //String ticket = jsonObject.getString("ticket");
-                    //txtTicket.setText(ticket);
+                    txtTicketSalida.setText(jsonObject.getString("ticket"));
+
+                    //String marca = jsonObject.getString("marca");
+                    //txtMarca.setText(marca);
+
+                    //String color = jsonObject.getString("color");
+                    //txtColor.setText(color);
+
+                    JSONObject relatedObject = jsonObject.getJSONObject("persona");
+                    String id_persona = relatedObject.getString("id_persona");
+                    txtIdPersonaSalida.setText(id_persona);
+
+                    String nombrePer = relatedObject.getString("nombre");
+                    String apellidoPer = relatedObject.getString("apellido");
+                    txtNombrePer.setText(nombrePer+" "+apellidoPer);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error", error.getMessage());
+            }
+        });
+        Volley.newRequestQueue(this).add(postResquest);
+    }
+
+    private void BuscarVehiculoPorTicket() {
+        String ticket=txtBuscarPorTicket.getText().toString();
+        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/ticket/"+ticket;
+
+        StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    txtIdVehiculoSalida.setText(jsonObject.getString("id_vehiculo"));
+
+                    String placa = jsonObject.getString("placa");
+                    txtPlacaSalida.setText(placa);
+
+                    txtTicketSalida.setText(jsonObject.getString("ticket"));
 
                     //String marca = jsonObject.getString("marca");
                     //txtMarca.setText(marca);
@@ -254,7 +299,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     public void GuardarRegistroSalida(){
 
-        String urL ="https://3988-181-211-10-245.ngrok.io/api/registro/create";
+        String urL ="https://83e7-45-236-151-105.sa.ngrok.io/api/registro/create";
         JSONObject data = new JSONObject();
 
         try {
@@ -266,6 +311,8 @@ public class RegistroSalida extends AppCompatActivity {
             data.put("bloque", txtIdBloqueSalida.getText());
             data.put("condicion", txtCondicionSalida.getText());
             data.put("vehiculo", txtIdVehiculoSalida.getText());
+            //data.put("estado", txtEstadoSalida.getText());
+
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -293,6 +340,17 @@ public class RegistroSalida extends AppCompatActivity {
 
     }
 
+    public void BuscarPorCampo(){
+        String porPlaca = txtBuscarPlaca.getText().toString();
+        String porTicket = txtBuscarPorTicket.getText().toString();
+
+        if (porPlaca.isEmpty()){
+            BuscarVehiculoPorTicket();
+        }if(porTicket.isEmpty()){
+            BuscarVehiculoPorPlaca();
+        }
+    }
+
     public void BorrarCampos(){
         txt3.setText("");
         txtBuscarPlaca.setText("");
@@ -300,6 +358,9 @@ public class RegistroSalida extends AppCompatActivity {
         txtObservacionesSalida.setText("");
         txtIdUsuarioSalida.setText("");
         txtIdVehiculoSalida.setText("");
+        txtPlacaSalida.setText("");
+        txtIdPersonaSalida.setText("");
+        txtTicketSalida.setText("");
         //txtTicket.setText("");
     }
 }

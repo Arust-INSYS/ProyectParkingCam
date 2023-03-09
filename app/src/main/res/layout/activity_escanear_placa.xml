@@ -118,12 +118,21 @@
               android:textStyle="bold"/>
 
           <TextView
+              android:id="@+id/textView22"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              android:textStyle="bold"
+              android:text="ID Vehículo" />
+
+          <TextView
               android:id="@+id/txtIdVehiculo2"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginEnd="10dp"
               android:layout_marginStart="10dp"
-              android:layout_marginTop="15dp"
               android:hint="ID Vehiculo"
               android:textSize="17sp"
               android:textAlignment="center"
@@ -132,10 +141,19 @@
               app:layout_constraintStart_toStartOf="parent"/>
 
           <TextView
+              android:id="@+id/textView23"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              android:textStyle="bold"
+              android:text="Placa" />
+
+          <TextView
               android:id="@+id/txtPlacaR"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
               android:layout_marginEnd="10dp"
               android:layout_marginStart="10dp"
               android:hint="Placa"
@@ -147,11 +165,20 @@
               app:layout_constraintTop_toBottomOf="@+id/txtPlacaBuscar" />
 
           <TextView
+              android:id="@+id/textView24"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              android:textStyle="bold"
+              android:text="Ticket" />
+
+          <TextView
               android:id="@+id/txtTicket"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginStart="10dp"
-              android:layout_marginTop="10dp"
               android:layout_marginEnd="10dp"
               android:background="@drawable/edt_background"
               android:hint="Ticket"
@@ -161,10 +188,19 @@
               app:layout_constraintStart_toStartOf="parent" />
 
           <TextView
+              android:id="@+id/textView25"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              android:textStyle="bold"
+              android:text="Marca" />
+
+          <TextView
               android:id="@+id/txtMarca"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
               android:layout_marginEnd="10dp"
               android:layout_marginStart="10dp"
               android:background="@drawable/edt_background"
@@ -175,11 +211,20 @@
               app:layout_constraintTop_toBottomOf="@+id/txtPlacaBuscar" />
 
           <TextView
+              android:id="@+id/textView26"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              android:textStyle="bold"
+              android:text="Propietario" />
+
+          <TextView
               android:id="@+id/txtNombrePersona"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_marginStart="10dp"
-              android:layout_marginTop="10dp"
               android:layout_marginEnd="10dp"
               android:background="@drawable/edt_background"
               android:hint="Nombre Persona"
@@ -189,16 +234,25 @@
               app:layout_constraintTop_toBottomOf="@+id/txtPlacaBuscar" />
 
           <TextView
+              android:id="@+id/textView28"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginTop="20dp"
+              android:layout_marginStart="10dp"
+              android:layout_marginEnd="10dp"
+              android:textStyle="bold"
+              android:text="ID Persona" />
+
+          <TextView
               android:id="@+id/txtIdPersona"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:layout_marginEnd="10dp"
               android:layout_marginStart="10dp"
-              android:layout_marginTop="10dp"
+              android:layout_marginEnd="10dp"
               android:background="@drawable/edt_background"
-              android:hint="Id Persona"
-              android:textSize="17sp"
+              android:hint="ID Persona"
               android:textAlignment="center"
+              android:textSize="17sp"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toEndOf="@+id/txtNombrePersona"
               app:layout_constraintTop_toBottomOf="@+id/btnBuscar" />
@@ -226,7 +280,7 @@
               android:hint="Fecha"
               android:textAlignment="center"
               android:textSize="17sp"
-              android:background="@drawable/edt_background2"/>
+              android:background="@drawable/edt_background"/>
 
           <TextView
               android:id="@+id/textView4"
@@ -251,7 +305,7 @@
               android:hint="Hora Entrada"
               android:textAlignment="center"
               android:textSize="17sp"
-              android:background="@drawable/edt_background2"/>
+              android:background="@drawable/edt_background"/>
 
 
           <TextView
@@ -274,7 +328,7 @@
               android:layout_marginEnd="10dp"
               android:ems="10"
               android:text="Entrada"
-              android:background="@drawable/edt_background2"
+              android:background="@drawable/edt_background"
               android:textAlignment="center"
               android:editable="false"
               android:focusable="false"

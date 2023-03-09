@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         String username =editxtUser.getText().toString();
         String clave = editxtClave.getText().toString();
-        url="https://3988-181-211-10-245.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
+        url="https://83e7-45-236-151-105.sa.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
         Log.d("TAG", "Astoy antes del RQUEST");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
