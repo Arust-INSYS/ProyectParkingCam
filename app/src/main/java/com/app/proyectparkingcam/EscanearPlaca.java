@@ -37,7 +37,7 @@ public class EscanearPlaca extends AppCompatActivity {
 
     Button btnBuscar,btnGuardar;
 
-
+    String dominio = main.Dominio();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,7 +135,7 @@ public class EscanearPlaca extends AppCompatActivity {
 
     private void LeerVehiculoPorPlaca() {
         String id=txtPlacaBuscar.getText().toString();
-        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/placa/"+id;
+        String url = "https://"+dominio+"/api/vehiculo/placa/"+id;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -175,7 +175,7 @@ public class EscanearPlaca extends AppCompatActivity {
 
     private void LeerVehiculoPorTicket() {
         String ticket=txtBuscarTicket.getText().toString();
-        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/ticket/"+ticket;
+        String url = "https://"+dominio+"/api/vehiculo/ticket/"+ticket;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -225,7 +225,7 @@ public class EscanearPlaca extends AppCompatActivity {
     }
 
     public void GuardarRegistro(){
-        String urL ="https://83e7-45-236-151-105.sa.ngrok.io/api/registro/create";
+        String urL ="https://"+dominio+"/api/registro/create";
         JSONObject data = new JSONObject();
         try {
             data.put("fecha", txtFecha.getText());

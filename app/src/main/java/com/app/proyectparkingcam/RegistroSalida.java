@@ -31,7 +31,7 @@ import java.util.Locale;
 public class RegistroSalida extends AppCompatActivity {
     MainActivity main = new MainActivity();
     String valor;
-
+    String dominio= main.Dominio();
     EditText txtId, txtPlaza,txtNombre;
     TextView txtEstadoSalida,txtBuscarPorTicket,txtTicketSalida,txt3,txtBuscarPlaca,txtNombrePer,txtFechaSalida,txtHoraSalida2,txtObservacionesSalida,txtIdUsuarioSalida,txtIdBloqueSalida,txtIdVehiculoSalida,txtPlacaSalida,txtIdPersonaSalida,txtCondicionSalida,textViewUser2;
     Button btnBuscarIdRegistro,btnGuardar;
@@ -233,7 +233,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     private void BuscarVehiculoPorPlaca() {
         String placa=txtBuscarPlaca.getText().toString();
-        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/placa/"+placa;
+        String url = "https://"+dominio+"/api/vehiculo/placa/"+placa;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -276,7 +276,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     private void BuscarVehiculoPorTicket() {
         String ticket=txtBuscarPorTicket.getText().toString();
-        String url = "https://83e7-45-236-151-105.sa.ngrok.io/api/vehiculo/ticket/"+ticket;
+        String url = "https://"+dominio+"+/api/vehiculo/ticket/"+ticket;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -320,7 +320,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     public void GuardarRegistroSalida(){
 
-        String urL ="https://83e7-45-236-151-105.sa.ngrok.io/api/registro/create";
+        String urL ="https://"+dominio+"/api/registro/create";
         JSONObject data = new JSONObject();
 
         try {

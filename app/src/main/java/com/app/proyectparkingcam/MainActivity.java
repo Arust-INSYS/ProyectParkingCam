@@ -73,12 +73,12 @@ public class MainActivity extends AppCompatActivity {
     static String txt_id;
     static String txtx_id_persona;
     String rol;
-
+    String dominio=Dominio();
     private void Listar() {
 
         String username =editxtUser.getText().toString();
         String clave = editxtClave.getText().toString();
-        url="https://83e7-45-236-151-105.sa.ngrok.io/api/usuario/searchname?filtro="+username+"&filter="+clave;
+        url="https://"+dominio+"/api/usuario/searchname?filtro="+username+"&filter="+clave;
         Log.d("TAG", "Astoy antes del RQUEST");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void Buscar_Persona() {
 
-        url="https://3908-181-211-10-245.sa.ngrok.io/api/persona/search/"+txt_id;
+        url="https://"+dominio+"/api/persona/search/"+txt_id;
         Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -258,6 +258,10 @@ public class MainActivity extends AppCompatActivity {
     public String Dar_Nombre(){
         String nombre_persona=name_completo;
         return nombre_persona;
+    }
+    public String Dominio(){
+        String dominio="c8ff-181-211-10-245.ngrok.io";
+        return dominio;
     }
 
 

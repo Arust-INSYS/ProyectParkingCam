@@ -37,7 +37,7 @@ public class Menu extends AppCompatActivity {
     TextView txtIdPlazas1,txtIdPlazas2,txtPLazas1,txtPlazas2;
     TextView textoId, textoName, textoApellido;
 
-    String texto_nombre, part1,part2;
+    String dominio= main.Dominio();
     static String valor;
     static String valor2;
     Button btnEnviar,btnRgSalida;
@@ -92,7 +92,7 @@ public class Menu extends AppCompatActivity {
     static String name_completo;
     private void Buscar_Persona(String valor) {
 
-        url="https://83e7-45-236-151-105.sa.ngrok.io/api/persona/search/"+valor;
+        url="https://"+dominio+"/api/persona/search/"+valor;
         Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
