@@ -28,7 +28,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class EscanearPlaca extends AppCompatActivity {
+public class RegistroEntrada extends AppCompatActivity {
     MainActivity main = new MainActivity();
     String valor;
     EditText txtPlacaBuscar,txtObservaciones,txtUsuario,txtBloque,txtCondicion,txtBuscarTicket;
@@ -75,7 +75,7 @@ public class EscanearPlaca extends AppCompatActivity {
         txtUsuario.setText(valor);
         txtUsuario.setEnabled(false);
         //OCULTAR
-        //txtUsuario.setVisibility(View.GONE);
+        txtUsuario.setVisibility(View.GONE);
         Log.d("TAG", "EL USUARIO ES:"+valor);
         txtPersona = findViewById(R.id.txtviewPersona);
         txtPersona.setText(main.Dar_Nombre());

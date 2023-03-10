@@ -87,9 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     JSONObject data = new JSONObject(response);
                     txt_id = data.getString("id_usuario");
-                    //BUSCAR A PERSONA
-                    Buscar_Persona();
-                    //Captura_persona(txt_id);
                     Log.d("TAG", "EL USUARIO ES:"+txt_id);
                     nombre_user=data.getString("username");
                     clave_user=data.getString("password");
@@ -98,6 +95,9 @@ public class MainActivity extends AppCompatActivity {
                     JSONObject relatedObject = data.getJSONObject("persona");
                     txtx_id_persona = relatedObject.getString("id_persona");
                     //FIN CLAVE FORANEA
+                    //BUSCAR A PERSONA
+                    Buscar_Persona();
+
                     Log.d("TAG", "HOLA SOY: "+nombre_user+" "+clave_user);
                     Log.d("TAG", "ID DE  PERSONA: "+txtx_id_persona);
                     txtMensaje.setText("Ok");
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void Buscar_Persona() {
 
-        url=dominio+"/api/persona/search/"+txt_id;
+        url=dominio+"/api/persona/search/"+txtx_id_persona;
         Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         return nombre_persona;
     }
     public String Dominio(){
-        String dominio="http://192.168.18.26:8080";
+        String dominio="http://138.197.127.252:8080";
         return dominio;
     }
 

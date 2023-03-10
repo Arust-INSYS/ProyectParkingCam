@@ -53,19 +53,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewID"
-            android:layout_width="309dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:text="ID:"
-            android:textColor="#035bf7"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-             />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="29dp" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="239dp"
+            android:scrollbarDefaultDelayBeforeFade="50"
+            android:scrollbarFadeDuration="50"
+            app:srcCompat="@drawable/police" />
 
         <Button
             android:id="@+id/btnRegistroEntrada"

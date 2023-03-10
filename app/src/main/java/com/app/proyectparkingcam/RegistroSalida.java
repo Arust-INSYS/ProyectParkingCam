@@ -276,7 +276,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     private void BuscarVehiculoPorTicket() {
         String ticket=txtBuscarPorTicket.getText().toString();
-        String url = dominio+"+/api/vehiculo/ticket/"+ticket;
+        String url = dominio+"/api/vehiculo/ticket/"+ticket;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

@@ -9,27 +9,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Menu extends AppCompatActivity {
     //Objeto Declarado del Main
@@ -54,11 +46,7 @@ public class Menu extends AppCompatActivity {
         //--CADENA
 
 
-        //String[] parts = cadena.split(" ");
-        //part1 = parts[1]; // Nombre
-        //part2 = parts[2]; // Apellido
-        //--Pasar nombres y apellidos a los campos de texto
-        textoId = findViewById(R.id.textViewID);
+        //textoId = findViewById(R.id.textViewID);
         textoName=findViewById(R.id.textViewIName);
                 ///
 
@@ -73,7 +61,7 @@ public class Menu extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(Menu.this, EscanearPlaca.class);
+                Intent it = new Intent(Menu.this, RegistroEntrada.class);
                 startActivity(it);
 
             }
@@ -103,7 +91,7 @@ public class Menu extends AppCompatActivity {
                     name_persona = data.getString("nombre");
                     last_persona=data.getString("apellido");
 
-                    textoId.setText("ID Usuario: "+valor);
+                    //textoId.setText("ID Usuario: "+valor);
                     textoName.setText("Nombre de Usuario: "+name_persona+" "+last_persona);
                     //textoApellido.setText(last_persona);
 
