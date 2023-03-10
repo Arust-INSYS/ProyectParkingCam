@@ -233,7 +233,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     private void BuscarVehiculoPorPlaca() {
         String placa=txtBuscarPlaca.getText().toString();
-        String url = "https://"+dominio+"/api/vehiculo/placa/"+placa;
+        String url =dominio+"/api/vehiculo/placa/"+placa;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -276,7 +276,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     private void BuscarVehiculoPorTicket() {
         String ticket=txtBuscarPorTicket.getText().toString();
-        String url = "https://"+dominio+"+/api/vehiculo/ticket/"+ticket;
+        String url = dominio+"+/api/vehiculo/ticket/"+ticket;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -320,7 +320,7 @@ public class RegistroSalida extends AppCompatActivity {
 
     public void GuardarRegistroSalida(){
 
-        String urL ="https://"+dominio+"/api/registro/create";
+        String urL =dominio+"/api/registro/create";
         JSONObject data = new JSONObject();
 
         try {

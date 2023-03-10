@@ -92,7 +92,7 @@ public class Menu extends AppCompatActivity {
     static String name_completo;
     private void Buscar_Persona(String valor) {
 
-        url="https://"+dominio+"/api/persona/search/"+valor;
+        url=dominio+"/api/persona/search/"+valor;
         Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override

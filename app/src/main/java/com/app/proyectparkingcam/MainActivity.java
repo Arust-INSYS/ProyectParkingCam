@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         String username =editxtUser.getText().toString();
         String clave = editxtClave.getText().toString();
-        url="https://"+dominio+"/api/usuario/searchname?filtro="+username+"&filter="+clave;
+        url=dominio+"/api/usuario/searchname?filtro="+username+"&filter="+clave;
         Log.d("TAG", "Astoy antes del RQUEST");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void Buscar_Persona() {
 
-        url="https://"+dominio+"/api/persona/search/"+txt_id;
+        url=dominio+"/api/persona/search/"+txt_id;
         Log.d("TAG", "ESTOY EN BUSCAR PERSONA");
         StringRequest data = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -260,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         return nombre_persona;
     }
     public String Dominio(){
-        String dominio="c8ff-181-211-10-245.ngrok.io";
+        String dominio="http://192.168.18.26:8080";
         return dominio;
     }
 

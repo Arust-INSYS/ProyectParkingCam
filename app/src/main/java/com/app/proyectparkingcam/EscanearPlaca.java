@@ -75,7 +75,7 @@ public class EscanearPlaca extends AppCompatActivity {
         txtUsuario.setText(valor);
         txtUsuario.setEnabled(false);
         //OCULTAR
-        txtUsuario.setVisibility(View.GONE);
+        //txtUsuario.setVisibility(View.GONE);
         Log.d("TAG", "EL USUARIO ES:"+valor);
         txtPersona = findViewById(R.id.txtviewPersona);
         txtPersona.setText(main.Dar_Nombre());
@@ -135,7 +135,7 @@ public class EscanearPlaca extends AppCompatActivity {
 
     private void LeerVehiculoPorPlaca() {
         String id=txtPlacaBuscar.getText().toString();
-        String url = "https://"+dominio+"/api/vehiculo/placa/"+id;
+        String url = dominio+"/api/vehiculo/placa/"+id;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -175,7 +175,7 @@ public class EscanearPlaca extends AppCompatActivity {
 
     private void LeerVehiculoPorTicket() {
         String ticket=txtBuscarTicket.getText().toString();
-        String url = "https://"+dominio+"/api/vehiculo/ticket/"+ticket;
+        String url = dominio+"/api/vehiculo/ticket/"+ticket;
 
         StringRequest postResquest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -225,7 +225,7 @@ public class EscanearPlaca extends AppCompatActivity {
     }
 
     public void GuardarRegistro(){
-        String urL ="https://"+dominio+"/api/registro/create";
+        String urL =dominio+"/api/registro/create";
         JSONObject data = new JSONObject();
         try {
             data.put("fecha", txtFecha.getText());
