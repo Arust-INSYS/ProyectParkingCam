@@ -14,7 +14,7 @@
         android:theme="@style/Theme.ProyectParkingCam"
         tools:targetApi="31">
         <activity
-            android:name=".Menu"
+            android:name=".MenuApp"
             android:exported="false" />
         <activity
             android:name=".RegistroSalida"

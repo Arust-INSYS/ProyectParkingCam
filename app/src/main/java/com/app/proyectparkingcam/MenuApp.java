@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -23,7 +25,7 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Menu extends AppCompatActivity {
+public class MenuApp extends AppCompatActivity {
     //Objeto Declarado del Main
     MainActivity main = new MainActivity();
     TextView txtIdPlazas1,txtIdPlazas2,txtPLazas1,txtPlazas2;
@@ -41,7 +43,6 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
         //CAMBIOS ARIEL
         //--CADENA
 
@@ -61,7 +62,7 @@ public class Menu extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(Menu.this, RegistroEntrada.class);
+                Intent it = new Intent(MenuApp.this, RegistroEntrada.class);
                 startActivity(it);
 
             }
@@ -71,11 +72,77 @@ public class Menu extends AppCompatActivity {
         btnRgSalida.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(Menu.this, RegistroSalida.class);
+                Intent it = new Intent(MenuApp.this, RegistroSalida.class);
                 startActivity(it);
             }
         });
+
     }
+    ///MENÚ DE OPCIONES
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_options, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            // manejar la opción de menú "Settings"
+            return true;
+        } else if (id == R.id.action_help) {
+            // manejar la opción de menú "Help"
+            return true;
+        }else if (id == R.id.action_logout) {
+            Mensaje_Verificacion(1);
+
+            return true;
+        }else
+
+        return super.onOptionsItemSelected(item);
+    }
+    //USO DEL BOTON BACK
+    @Override
+    public void onBackPressed() {
+        // Agregar la lógica para validar el botón "back"
+        // ...
+        Mensaje_Verificacion(1);
+        // Si la validación es exitosa, llamar al método padre para manejar el evento
+
+    }
+
+    public void Mensaje_Verificacion(int opcion){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("¿Está seguro?");
+        if(opcion==1){
+            builder.setMessage("¿Desea cerrar sesión?");
+        }
+
+        //COLOCAR OTRO MENSAJE
+
+        builder.setPositiveButton("Sí", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Aquí puede agregar el código para cerrar sesión
+                if(opcion==1){
+                    Cerrar_sesion();
+                }
+                //COLOCAR OTRO METODO
+            }
+        });
+        builder.setNegativeButton("No", null);
+        builder.show();
+
+    }
+    public void Cerrar_sesion(){
+        // Aquí va tu código para cerrar la sesión del usuario
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+    ////
     String url,name_persona,last_persona;
     static String name_completo;
     private void Buscar_Persona(String valor) {
@@ -114,33 +181,7 @@ public class Menu extends AppCompatActivity {
 
 
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==event.KEYCODE_BACK){
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Desea salir de la aplicación?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent i = new Intent(Intent.ACTION_MAIN);
-                            i.addCategory(Intent.CATEGORY_HOME);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
-                        }
-                    })
-            .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.show();
 
-
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
 /*
     @Override
     public void onBackPressed() {

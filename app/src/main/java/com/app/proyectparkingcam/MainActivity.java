@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -199,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
     public void Acceso(boolean valor){
         if(valor ==true){
             Borrar_campos(2);
-            Intent i = new Intent(MainActivity.this,Menu.class);
+            Intent i = new Intent(MainActivity.this, MenuApp.class);
             startActivity(i);
 
         }
@@ -262,6 +263,32 @@ public class MainActivity extends AppCompatActivity {
     public String Dominio(){
         String dominio="http://138.197.127.252:8080";
         return dominio;
+    }
+    ///SALIR DE LA APP
+    @Override
+    public void onBackPressed() {
+        // Agregar la lógica para validar el botón "back"
+        // ...
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Desea salir de la aplicación?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent i = new Intent(Intent.ACTION_MAIN);
+                            i.addCategory(Intent.CATEGORY_HOME);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
+        // Si la validación es exitosa, llamar al método padre para manejar el evento
+
     }
 
 
