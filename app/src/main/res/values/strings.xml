@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ParkingCam</string>
+    <string name="app_name">AparkTown</string>
 
     <string-array name="bloques">
         <item>1</item>

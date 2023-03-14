@@ -88,10 +88,7 @@ public class MenuApp extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            // manejar la opción de menú "Settings"
-            return true;
-        } else if (id == R.id.action_help) {
+        if (id == R.id.action_help) {
             // manejar la opción de menú "Help"
             return true;
         }else if (id == R.id.action_logout) {
@@ -103,14 +100,33 @@ public class MenuApp extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     //USO DEL BOTON BACK
-    @Override
-    public void onBackPressed() {
-        // Agregar la lógica para validar el botón "back"
-        // ...
-        Mensaje_Verificacion(1);
-        // Si la validación es exitosa, llamar al método padre para manejar el evento
+        @Override
+        public void onBackPressed() {
+            // Agregar la lógica para validar el botón "back"
+            // ...
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("¿Desea salir de la aplicación?")
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                            Intent i = new Intent(Intent.ACTION_MAIN);
+                            i.addCategory(Intent.CATEGORY_HOME);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                        }
+                    })
+                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+            builder.show();
+            // Si la validación es exitosa, llamar al método padre para manejar el evento
 
-    }
+        }
+
 
     public void Mensaje_Verificacion(int opcion){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

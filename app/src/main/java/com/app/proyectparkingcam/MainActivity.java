@@ -27,8 +27,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
-
-    //TextView txtUser,txtClave,
     TextView txtMensaje;
     Button btnInicio;
     EditText editxtUser;
@@ -261,35 +259,12 @@ public class MainActivity extends AppCompatActivity {
         return nombre_persona;
     }
     public String Dominio(){
+        //String dominio="http://138.197.127.252:8080";
         String dominio="http://138.197.127.252:8080";
         return dominio;
     }
     ///SALIR DE LA APP
-    @Override
-    public void onBackPressed() {
-        // Agregar la lógica para validar el botón "back"
-        // ...
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setMessage("¿Desea salir de la aplicación?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent i = new Intent(Intent.ACTION_MAIN);
-                            i.addCategory(Intent.CATEGORY_HOME);
-                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(i);
-                        }
-                    })
-                    .setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-            builder.show();
-        // Si la validación es exitosa, llamar al método padre para manejar el evento
 
-    }
 
 
 
